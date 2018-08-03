@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <AppHeader></AppHeader>
-    <b-container fluid>
+    <b-container fluid id="main-wrapper">
       <transition name="fade">
         <router-view :key="$route.fullPath"></router-view>
       </transition>
@@ -31,4 +31,10 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+#main-wrapper {
+  padding-top:50px;
+  padding-left:0px;
+  padding-right:0px;
+  }
 </style>

@@ -1,7 +1,8 @@
 <template>
-  <main role="main">
+  <main role="main" style="padding-left:0px; padding-right:0px;">
 
-    <div class="jumbotron">
+    <!-- Page Title Jubotron -->
+    <div class="jumbotron jumbotron-fluid">
       <div class="container">
           <h1 class="display-6">
             {{ page }}
@@ -13,6 +14,7 @@
     <!-- End of jumbotron -->
     </div>
 
+    <!-- WPS statistics container -->
     <div class="container">
       <div class="row">
         <div class="col-md-3 border">
@@ -31,72 +33,62 @@
           <h2 style="margin-top:0.5em;">{{ statistic_ongoing_projects }}</h2>
           <p>Ongoing Projects</p>
         </div>
-      <!-- End of Row Container -->
+      <!-- End of Row  -->
       </div>
     <!-- End of Statistics container -->
     </div>
 
-    <div class="container" style="margin-bottom:1em; margin-top:1em;">
-      <div class="row">
-        <div class="col-xl-12">
-          <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Popular</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Community</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Education</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Entertainment</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Games</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Other</a>
-            </li>
-          </ul>
+    <!-- Start Tabs Container -->
+    <div class="container" style="margin-top:0.5em;">
+      <!-- Start of Categories Tabs -->
+      <b-tabs>
+        <!-- Popular Projects Tab -->
+        <b-tab title="Popular" active>
+
+          <CategoryTabContent></CategoryTabContent>
+
+        <!-- End of Popular Tab -->
+        </b-tab>
+        <!-- Community Tab -->
+        <b-tab title="Community">
+
+          <CategoryTabContent></CategoryTabContent>
+
+        <!-- End of Community Tab -->
+        </b-tab>
+        <!-- Education tab Content -->
+        <b-tab title="Education">
+
+          <CategoryTabContent></CategoryTabContent>
+
+        </b-tab>
+        <b-tab title="Entertainment">
+
+          <CategoryTabContent></CategoryTabContent>
+
+        </b-tab>
+        <b-tab title="Games">
+
+          <CategoryTabContent></CategoryTabContent>
+
+        </b-tab>
+        <b-tab title="Other">
+
+          <CategoryTabContent></CategoryTabContent>
+
+        </b-tab>
+      </b-tabs>
+
+      <!-- Load more Button -->
+      <div class="container" style="margin-top:1em; margin-bottom:1em;">
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-secondary">Show more</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="container" style="margin-bottom:1em;">
-      <div class="row">
-        <div class="col-xl-12">
-          <ul class="nav nav-tabs justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Hot</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Latest</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-
-        <ProjectCard></ProjectCard>
-        <ProjectCard></ProjectCard>
-        <ProjectCard></ProjectCard>
-        <ProjectCard></ProjectCard>
-        <ProjectCard></ProjectCard>
-        <ProjectCard></ProjectCard>
-
-      </div>
-    </div>
-
-    <div class="container" style="margin-top:1em; margin-bottom:1em;">
-      <div class="row">
-        <div class="col-md-12">
-          <button type="button" class="btn btn-secondary">Show more</button>
-        </div>
-      </div>
+    <!-- End of Categories tabs content -->
     </div>
 
   </main>
@@ -104,12 +96,12 @@
 </template>
 
 <script>
-import ProjectCard from '../components/ProjectCard.vue'
+import CategoryTabContent from '../components/CategoryTabContent.vue'
 
 export default {
   name: 'Home',
   components: {
-    ProjectCard
+    CategoryTabContent
   },
   data () {
     return {
