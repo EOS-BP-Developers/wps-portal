@@ -43,8 +43,9 @@
                 <div class="container">
                   <div class="row">
 
+
                     <!-- Card column -->
-                    <div class="col-md-6 border" v-if="item.category === 'Popular'" v-for="item in projects">
+                    <div class="col-md-6 border" v-if="item.category === 'Popular'" v-for="item in projects" style="margin-top:1em;">
                       <div class="container">
                         <div class="row">
                           <div class="col-md-6">
@@ -52,11 +53,11 @@
                           </div>
                           <div class="col-md-6">
                             <div class="container fluid">
-                              <div class="row" style="margin-top:1em;">
-                                <div class="col-md-6">
+                              <div class="row">
+                                <div class="col-md-6" style="margin-top:0.5em;">
                                   <p style="color:green;"> {{ item.status }} </p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="margin-top:0.5em;">
                                   <p> {{ item.count }} </p>
                                 </div>
                               </div>
