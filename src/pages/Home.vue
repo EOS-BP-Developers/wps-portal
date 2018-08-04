@@ -5,7 +5,7 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
           <h1 class="display-6">
-            {{ page }}
+            {{ title }}
           </h1>
           <p>
           {{ subtitle }}
@@ -17,21 +17,9 @@
     <!-- WPS statistics container -->
     <div class="container">
       <div class="row">
-        <div class="col-md-3 border">
-          <h2 style="margin-top:0.5em;">{{ statistic_total_voters }}</h2>
-          <p>Total Voters</p>
-        </div>
-        <div class="col-md-3 border">
-          <h2 style="margin-top:0.5em;">{{ statistic_total_projects }}</h2>
-          <p>Total Projects</p>
-        </div>
-        <div class="col-md-3 border">
-          <h2 style="margin-top:0.5em;">{{ statistic_funded_projects }}</h2>
-          <p>Total Funded Projects</p>
-        </div>
-        <div class="col-md-3 border">
-          <h2 style="margin-top:0.5em;">{{ statistic_ongoing_projects }}</h2>
-          <p>Ongoing Projects</p>
+        <div class="col-md-3 border" v-for="(value, key) in statistics">
+          <h2 style="margin-top:0.5em;">{{ value }}</h2>
+          <p>{{ key }}</p>
         </div>
       <!-- End of Row  -->
       </div>
@@ -239,12 +227,14 @@ export default {
   },
   data () {
     return {
-      page: 'Welcome to the WPS voting Portal',
+      title: 'Welcome to the WPS voting Portal',
       subtitle: 'A place to fund innovation on the EOS blockchain',
-      statistic_total_voters: '183,434',
-      statistic_total_projects: '143,432',
-      statistic_funded_projects: '734,345',
-      statistic_ongoing_projects: '235,289',
+      statistics: {
+        'Total Voters': '183,434',
+        'Total Projects': '143,432',
+        'Funded Projects': '734,345',
+        'Ongoing Projects': '235,289'
+      },
       projects: [
         { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '12', name: 'Warhammer', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
         { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
@@ -259,7 +249,6 @@ export default {
         { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '13', name: 'Project Name', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
         { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' }
       ],
-
     }
   },
 }
