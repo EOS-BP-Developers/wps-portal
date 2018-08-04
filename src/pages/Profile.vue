@@ -12,76 +12,121 @@
       </div>
     <!-- End of jumbotron -->
     </div>
+    <div class="container" style="margin-top:0.5em;">
+      <b-tabs>
+        <b-tab title="Profile Info" active>
+          <div class="container border" style="margin-bottom:1em;">
+            
+            <!-- Form Inner Container -->
+            <div class="container" style="margin-top:1em;">
 
-    <div class="container" style="margin-bottom:1em; margin-top:1em;">
-      <div class="row">
-        <div class="col-xl-12">
-          <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Profile Info</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">My Projects</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+              <!-- Profile Form Input fields -->
+              <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="margin-top:0.5em;">
+                <div class="row">
 
-    <div class="container border" style="margin-bottom:1em;">
-      <div class="row">
-        <div class="col-xl-6">
-          <form>
-            <div class="form-group" style="margin-top:1em;">
-              <label for="exampleFormControlInput1">Username</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Type Username">
+                  <!-- Left column -->
+                  <div class="col-xl-6" style="text-align:left;">
+                    
+                    <b-form-group id="username"
+                                  label="Username:"
+                                  label-for="username">
+                      <b-form-input id="username"
+                                    type="text"
+                                    v-model="form.username"
+                                    required
+                                    placeholder="Type your username">
+                      </b-form-input>
+                    </b-form-group>
+                    
+                    <b-form-group id="picture"
+                                  label="Profile Picture:"
+                                  label-for="picture">
+                      <b-form-input id="picture"
+                                    type="url"
+                                    v-model="form.picture"
+                                    required
+                                    placeholder="Copy Paste a picture URL">
+                      </b-form-input>
+                    </b-form-group>
+                    
+                    <b-form-group id="bio"
+                                  label="Short Bio:"
+                                  label-for="bio">
+                      <b-form-textarea id="bio"
+                                    type="text"
+                                    v-model="form.bio"
+                                    required
+                                    placeholder="Type short description of yourself"
+                                    :rows="5"
+                                    :max-rows="6">>
+                      </b-form-textarea>
+
+                    </b-form-group>
+                  <!-- End of left column -->
+                  </div>  
+
+                  <!-- Right column -->
+                  <div class="col-xl-6" style="text-align:left;">
+                    
+                    <b-form-group id="location"
+                                  label="Location:"
+                                  label-for="location">
+                      <b-form-input id="location"
+                                    type="text"
+                                    v-model="form.location"
+                                    placeholder="Type City and Country">
+                      </b-form-input>
+                    </b-form-group>
+                    
+                    <b-form-group id="telegram"
+                                  label="Telegram Username:"
+                                  label-for="telegram">
+                      <b-form-input id="telegram"
+                                    type="text"
+                                    v-model="form.telegram"                                  
+                                    placeholder="Type Telegram Username">
+                      </b-form-input>
+                    </b-form-group>
+
+                    <b-form-group id="website"
+                                  label="Project Website:"
+                                  label-for="website">
+                      <b-form-input id="website"
+                                    type="url"                                    
+                                    v-model="form.website"
+                                    placeholder="Type your Website URL">
+                      </b-form-input>                    
+                    </b-form-group>
+
+                    <b-form-group id="linkedin"
+                                  label="Linkedin Profile:"
+                                  label-for="linkedin">
+                      <b-form-input id="linkedin"
+                                    type="url"                                    
+                                    v-model="form.linkedin"
+                                    placeholder="Type your Linkedin Profile URL">
+                      </b-form-input>                    
+                    </b-form-group>
+                  <!-- End of right column -->
+                  </div>
+                <!-- End of Row -->
+                </div>
+
+                <!-- Submission and Reset Buttons for Forom -->
+                <div class="container" style="margin-bottom:1em;">
+                  <b-button type="submit" variant="primary">Submit</b-button>
+                  <b-button type="reset" variant="danger">Reset Form</b-button>
+                </div>
+              <!-- End of Form -->
+              </b-form>
+
             </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Picture</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Upload Picture">
-            </div>
-
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Short Bio</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Describe Yourself"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="col-xl-6">
-        <form>
-          <div class="form-group" style="margin-top:1em;">
-            <label for="exampleFormControlInput1">Location</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="E.g. Seattle">
           </div>
-
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Telegram Username</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Telegram Username">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Website</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Website URL">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Linkedin</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Linkedin URL">
-          </div>
-
-        </form>
-        </div>
-
-        <div class="container" style="margin-top:1em; margin-bottom:1em;">
-          <div class="row">
-            <div class="col-md-12">
-              <button type="button" class="btn btn-secondary">Submit</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
+        </b-tab>
+        <b-tab title="My Projects">
+        </b-tab>
+      </b-tabs>
     </div>
 
   </main>
@@ -92,7 +137,37 @@ export default {
   name: 'Profile',
   data () {
     return {
-      page: 'My Profile'
+      page: 'My Profile',
+      form: {
+        username: '',
+        picture: '',
+        bio: '',
+        location: '',
+        telegram: '',
+        website: '',
+        linkedin: ''
+      },
+      show: true
+    }
+  },
+  methods: {
+    onSubmit (evt) {
+      evt.preventDefault();
+      alert(JSON.stringify(this.form));
+    },
+    onReset (evt) {
+      evt.preventDefault();
+      /* Reset our form values */
+      this.form.username = '';
+      this.form.picture = '';
+      this.form.bio = '';
+      this.form.location = '';
+      this.form.telegram = '';
+      this.form.website = '';
+      this.form.linkedin = '';
+      /* Trick to reset/clear native browser form validation state */
+      this.show = false;
+      this.$nextTick(() => { this.show = true });
     }
   }
 }
