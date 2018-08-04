@@ -42,7 +42,7 @@
                                   label="Profile Picture:"
                                   label-for="picture">
                       <b-form-input id="picture"
-                                    type="text"
+                                    type="url"
                                     v-model="form.picture"
                                     required
                                     placeholder="Copy Paste a picture URL">
@@ -92,7 +92,7 @@
                                   label="Project Website:"
                                   label-for="website">
                       <b-form-input id="website"
-                                    type="text"                                    
+                                    type="url"                                    
                                     v-model="form.website"
                                     placeholder="Type your Website URL">
                       </b-form-input>                    
@@ -102,7 +102,7 @@
                                   label="Linkedin Profile:"
                                   label-for="linkedin">
                       <b-form-input id="linkedin"
-                                    type="text"                                    
+                                    type="url"                                    
                                     v-model="form.linkedin"
                                     placeholder="Type your Linkedin Profile URL">
                       </b-form-input>                    
