@@ -17,7 +17,7 @@
     <!-- WPS statistics container -->
     <div class="container">
       <div class="row">
-        <div class="col-md-3 border" v-for="(value, key) in statistics">
+        <div class="col-md-3" v-for="(value, key) in statistics">
           <h2 class="mt-1">{{ value }}</h2>
           <p>{{ key }}</p>
         </div>
@@ -29,7 +29,7 @@
     <!-- Start Tabs Container -->
     <div class="container mt-2">
       <!-- Start of Categories Tabs -->
-      <b-tabs>
+      <b-tabs class="text-center">
         <!-- Popular Projects Tab -->
         <b-tab title="Popular" active>
 
@@ -39,67 +39,44 @@
               <!-- Hot Tab - Most voted projects on top -->
               <b-tab title="Hot" active>
 
-                <!-- Projects cards container -->
-                <div class="container">
-                  <div class="row">
+                  <b-card-group deck class="mb-3">
+                    
+                    <div class="row">
+                      <div class="col-4" v-if="item.category === 'Popular'" v-for="item in projects">
 
+                        <!-- Project Card -->
+                        <b-card   no-body
+                                  v-bind:img-src="item.image"
+                                  img-alt="Image"
+                                  img-top
+                                  tag="div"
+                                  style="max-width: 20rem;"
+                                  class="mb-2"
+                                  >
+                          <h4 slot="header">{{ item.name }}</h4>
+                          <b-card-body>
+                            <p class="d-inline text-success">{{ item.status }}</p>
+                            <span class="badge badge-secondary">{{ item.category }}</span>
+                            <p class="d-inline text-info">{{ item.count }} votes</p>                        
+                            <p class="card-text mt-3">
+                              {{ item.description }}
+                            </p>
+                          </b-card-body>
+                          <b-card-footer>
+                            <button type="button" class="btn btn-secondary">View</button>
+                          </b-card-footer>                    
+                        </b-card>
 
-                    <!-- Card column -->
-                    <div class="col-md-6 border mt-2" v-if="item.category === 'Popular'" v-for="item in projects">
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <img v-bind:src="item.image">
-                          </div>
-                          <div class="col-md-6">
-                            <div class="container fluid">
-                              <div class="row">
-                                <div class="col-md-6 mt-2">
-                                  <p class="text-success"> {{ item.status }} </p>
-                                </div>
-                                <div class="col-md-6 mt-2">
-                                  <p> {{ item.count }} </p>
-                                </div>
-                              </div>
-                            </div>
-
-                            <h2>{{ item.name }}</h2>
-                            <p>{{ item.description }}</p>
-
-                            <div class="container fluid">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <p>{{ item.votes }}</p>
-                                </div>
-                                <div class="col-md-6">
-                                  <span class="badge badge-secondary">{{ item.category }}</span>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
                       </div>
-                    <!-- End of card column -->
-                    </div>
+                    </div>   
 
-                  <!-- End or Row -->
-                  </div>
-                </div>
-
-              <!-- Latest Tab - Most Recent projects on top -->
+                  </b-card-group>
+                 
               </b-tab>
+
               <b-tab title="Latest">
-
-                <div class="container">
-                  <div class="row">
-
-                    <!-- Need same cards ordered by date -->
-
-                  </div>
-                </div>
-
               </b-tab>
+
             </b-tabs>
           </b-card>
 
@@ -114,52 +91,40 @@
               <!-- Hot Tab - Most voted projects on top -->
               <b-tab title="Hot" active>
 
-                <!-- Projects cards container -->
-                <div class="container">
-                  <div class="row">
+                                  <b-card-group deck
+                                class="mb-3">
+                    
+                    <div class="row">
+                      <div class="col-4" v-if="item.category === 'Community'" v-for="item in projects">
 
-                    <!-- Card column -->
-                    <div class="col-md-6 border" v-if="item.category === 'Community'" v-for="item in projects">
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <img v-bind:src="item.image">
-                          </div>
-                          <div class="col-md-6">
-                            <div class="container fluid">
-                              <div class="row mt-2">
-                                <div class="col-md-6">
-                                  <p class="text-success"> {{ item.status }} </p>
-                                </div>
-                                <div class="col-md-6">
-                                  <p> {{ item.count }} </p>
-                                </div>
-                              </div>
-                            </div>
+                        <!-- Project Card -->
+                        <b-card   no-body
+                                  v-bind:img-src="item.image"
+                                  img-alt="Image"
+                                  img-top
+                                  tag="div"
+                                  style="max-width: 20rem;"
+                                  class="mb-2"
+                                  >
+                          <h4 slot="header">{{ item.name }}</h4>
+                          <b-card-body>
+                            <p class="d-inline text-left text-success">{{ item.status }}</p>
+                            <span class="badge badge-secondary">{{ item.category }}</span>
+                            <p class="d-inline text-right">{{ item.count }} votes</p>                        
+                            <p class="card-text mt-3">
+                              {{ item.description }}
+                            </p>
+                          </b-card-body>
+                          <b-card-footer>
+                            <button type="button" class="btn btn-secondary">View</button>
+                          </b-card-footer>                    
+                        </b-card>
 
-                            <h2>{{ item.name }}</h2>
-                            <p>{{ item.description }}</p>
-
-                            <div class="container fluid">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <p>{{ item.votes }}</p>
-                                </div>
-                                <div class="col-md-6">
-                                  <span class="badge badge-secondary">{{ item.category }}</span>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
                       </div>
-                    <!-- End of card column -->
-                    </div>
+                    </div>   
 
-                  <!-- End or Row -->
-                  </div>
-                </div>
+                  </b-card-group>
+
 
               <!-- Latest Tab - Most Recent projects on top -->
               </b-tab>
@@ -237,18 +202,18 @@ export default {
         'Ongoing Projects': '235,289'
       },
       projects: [
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '12', name: 'Warhammer', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '13', name: 'Project Name', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-        { image: 'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916', status: 'Ongoing', count: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' }
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '12', name: 'Warhammer', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '10', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '19', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '4', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '19', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '10', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '19', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '4', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '19', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '19', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '13', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', count: '19', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Community' }
       ],
     }
   },
