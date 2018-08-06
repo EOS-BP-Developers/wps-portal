@@ -42,7 +42,7 @@
                   <b-card-group deck class="mb-3">
                     
                     <div class="row">
-                      <div class="col-4" v-if="item.category === 'Popular'" v-for="item in projects">
+                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="item in projects">
 
                         <!-- Project Card -->
                         <b-card   no-body
@@ -95,7 +95,7 @@
                                 class="mb-3">
                     
                     <div class="row">
-                      <div class="col-4" v-if="item.category === 'Community'" v-for="item in projects">
+                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="item in projects">
 
                         <!-- Project Card -->
                         <b-card   no-body
