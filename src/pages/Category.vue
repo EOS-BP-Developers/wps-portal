@@ -13,7 +13,7 @@
   </div>
 
   <!-- Start Tabs Container -->
-  <div class="container" style="margin-top:0.5em;">
+  <div class="container mt-2">
     <!-- Start of Categories Tabs -->
           <b-card no-body>
             <b-tabs card>
@@ -21,52 +21,39 @@
               <!-- Hot Tab - Most voted projects on top -->
               <b-tab title="Hot" active>
 
-                <!-- Projects cards container -->
-                <div class="container">
-                  <div class="row">
+                <b-card-group deck class="mb-3">
                     
-                    <!-- Card column -->
-                    <div class="col-md-6 border" v-if="item.category === 'Popular'" v-for="item in projects" style="margin-top:1em;">
-                      <div class="container">
-                        <div class="row" >
-                          <div class="col-md-6">
-                            <img v-bind:src="item.image">
-                          </div>
-                          <div class="col-md-6">
-                            <div class="container fluid">
-                              <div class="row">
-                                <div class="col-md-6" style="margin-top:0.5em;">
-                                  <p style="color:green;"> {{ item.status }} </p>
-                                </div>
-                                <div class="col-md-6" style="margin-top:0.5em;">
-                                  <p> {{ item.count }} </p>
-                                </div>
-                              </div>
-                            </div>
+                    <div class="row">
+                      <div class="col-4" v-if="item.category === 'Popular'" v-for="item in projects">
 
-                            <h2>{{ item.name }}</h2>
-                            <p>{{ item.description }}</p>
+                        <!-- Project Card -->
+                        <b-card   no-body
+                                  v-bind:img-src="item.image"
+                                  img-alt="Image"
+                                  img-top
+                                  tag="div"
+                                  style="max-width: 20rem;"
+                                  class="mb-2"
+                                  >
+                          <h4 slot="header">{{ item.name }}</h4>
+                          <b-card-body>
+                            <p class="d-inline text-success">{{ item.status }}</p>
+                            <span class="badge badge-secondary">{{ item.category }}</span>
+                            <p class="d-inline text-info">{{ item.count }} votes</p>                        
+                            <p class="card-text mt-3">
+                              {{ item.description }}
+                            </p>
+                          </b-card-body>
+                          <b-card-footer>
+                            <button type="button" class="btn btn-secondary">View</button>
+                          </b-card-footer>                    
+                        </b-card>
 
-                            <div class="container fluid">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <p>{{ item.votes }}</p>
-                                </div>
-                                <div class="col-md-6">
-                                  <span class="badge badge-secondary">{{ item.category }}</span>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
                       </div>
-                    <!-- End of card column -->
-                    </div>
+                    </div>   
 
-                  <!-- End or Row -->
-                  </div>
-                </div>
+                  </b-card-group>
+
 
               <!-- Latest Tab - Most Recent projects on top -->
               </b-tab>
@@ -85,7 +72,7 @@
           </b-card>
 
     <!-- Load more Button -->
-    <div class="container" style="margin-top:1em; margin-bottom:1em;">
+    <div class="container my-2">
       <div class="row">
         <div class="col-md-12">
           <button type="button" class="btn btn-secondary">Show more</button>

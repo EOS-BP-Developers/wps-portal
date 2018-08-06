@@ -12,20 +12,20 @@
       </div>
     <!-- End of jumbotron -->
     </div>
-    <div class="container" style="margin-top:0.5em;">
+    <div class="container mt-2">
       <b-tabs>
         <b-tab title="Profile Info" active>
-          <div class="container border" style="margin-bottom:1em;">
+          <div class="container border mb-2">
             
             <!-- Form Inner Container -->
-            <div class="container" style="margin-top:1em;">
+            <div class="container mt-2">
 
               <!-- Profile Form Input fields -->
-              <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="margin-top:0.5em;">
+              <b-form @submit="onSubmit" @reset="onReset" v-if="show" class="mt-2">
                 <div class="row">
 
                   <!-- Left column -->
-                  <div class="col-xl-6" style="text-align:left;">
+                  <div class="col-xl-6 text-left">
                     
                     <b-form-group id="username"
                                   label="Username:"
@@ -66,7 +66,7 @@
                   </div>  
 
                   <!-- Right column -->
-                  <div class="col-xl-6" style="text-align:left;">
+                  <div class="col-xl-6 text-left">
                     
                     <b-form-group id="location"
                                   label="Location:"
@@ -113,7 +113,7 @@
                 </div>
 
                 <!-- Submission and Reset Buttons for Forom -->
-                <div class="container" style="margin-bottom:1em;">
+                <div class="container mb-2">
                   <b-button type="submit" variant="primary">Submit</b-button>
                   <b-button type="reset" variant="danger">Reset Form</b-button>
                 </div>

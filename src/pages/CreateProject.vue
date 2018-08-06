@@ -15,7 +15,7 @@
 
     <!-- Project Creation Form -->
     <div class="container">
-      <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="text-align:left;">
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show" class="text-left">
           
         <h3>Main information</h3>
 
@@ -159,7 +159,7 @@
           </b-form-input>
         </b-form-group>
 
-        <div class="container" style="margin-bottom:1em; text-align:center;">
+        <div class="container my-2 text-center">
           <b-button type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </div>
