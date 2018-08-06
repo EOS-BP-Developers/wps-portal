@@ -1,5 +1,5 @@
 <template>
-  <main role="main" style="padding-left:0px; padding-right:0px;">
+  <main role="main" class="px-0">
 
     <!-- Page Title Jubotron -->
     <div class="jumbotron jumbotron-fluid">
@@ -18,7 +18,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3 border" v-for="(value, key) in statistics">
-          <h2 style="margin-top:0.5em;">{{ value }}</h2>
+          <h2 class="mt-1">{{ value }}</h2>
           <p>{{ key }}</p>
         </div>
       <!-- End of Row  -->
@@ -27,7 +27,7 @@
     </div>
 
     <!-- Start Tabs Container -->
-    <div class="container" style="margin-top:0.5em;">
+    <div class="container mt-2">
       <!-- Start of Categories Tabs -->
       <b-tabs>
         <!-- Popular Projects Tab -->
@@ -45,7 +45,7 @@
 
 
                     <!-- Card column -->
-                    <div class="col-md-6 border" v-if="item.category === 'Popular'" v-for="item in projects" style="margin-top:1em;">
+                    <div class="col-md-6 border mt-2" v-if="item.category === 'Popular'" v-for="item in projects">
                       <div class="container">
                         <div class="row">
                           <div class="col-md-6">
@@ -54,10 +54,10 @@
                           <div class="col-md-6">
                             <div class="container fluid">
                               <div class="row">
-                                <div class="col-md-6" style="margin-top:0.5em;">
+                                <div class="col-md-6 mt-2">
                                   <p style="color:green;"> {{ item.status }} </p>
                                 </div>
-                                <div class="col-md-6" style="margin-top:0.5em;">
+                                <div class="col-md-6 mt-2">
                                   <p> {{ item.count }} </p>
                                 </div>
                               </div>
@@ -127,7 +127,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="container fluid">
-                              <div class="row" style="margin-top:1em;">
+                              <div class="row mt-2">
                                 <div class="col-md-6">
                                   <p style="color:green;"> {{ item.status }} </p>
                                 </div>
@@ -203,7 +203,7 @@
       </b-tabs>
 
       <!-- Load more Button -->
-      <div class="container" style="margin-top:1em; margin-bottom:1em;">
+      <div class="container my-2">
         <div class="row">
           <div class="col-md-12">
             <button type="button" class="btn btn-secondary">Show more</button>
