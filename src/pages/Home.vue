@@ -55,7 +55,7 @@
                             <div class="container fluid">
                               <div class="row">
                                 <div class="col-md-6 mt-2">
-                                  <p style="color:green;"> {{ item.status }} </p>
+                                  <p class="text-success"> {{ item.status }} </p>
                                 </div>
                                 <div class="col-md-6 mt-2">
                                   <p> {{ item.count }} </p>
@@ -129,7 +129,7 @@
                             <div class="container fluid">
                               <div class="row mt-2">
                                 <div class="col-md-6">
-                                  <p style="color:green;"> {{ item.status }} </p>
+                                  <p class="text-success"> {{ item.status }} </p>
                                 </div>
                                 <div class="col-md-6">
                                   <p> {{ item.count }} </p>

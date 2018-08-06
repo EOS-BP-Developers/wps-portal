@@ -13,7 +13,7 @@
   </div>
 
   <!-- Start Tabs Container -->
-  <div class="container" style="margin-top:0.5em;">
+  <div class="container mt-2">
     <!-- Start of Categories Tabs -->
           <b-card no-body>
             <b-tabs card>
@@ -26,7 +26,7 @@
                   <div class="row">
                     
                     <!-- Card column -->
-                    <div class="col-md-6 border" v-if="item.category === 'Popular'" v-for="item in projects" style="margin-top:1em;">
+                    <div class="col-md-6 border mt-2" v-if="item.category === 'Popular'" v-for="item in projects">
                       <div class="container">
                         <div class="row" >
                           <div class="col-md-6">
@@ -35,10 +35,10 @@
                           <div class="col-md-6">
                             <div class="container fluid">
                               <div class="row">
-                                <div class="col-md-6" style="margin-top:0.5em;">
-                                  <p style="color:green;"> {{ item.status }} </p>
+                                <div class="col-md-6 mt-2">
+                                  <p class="text-success"> {{ item.status }} </p>
                                 </div>
-                                <div class="col-md-6" style="margin-top:0.5em;">
+                                <div class="col-md-6 mt-2">
                                   <p> {{ item.count }} </p>
                                 </div>
                               </div>
@@ -85,7 +85,7 @@
           </b-card>
 
     <!-- Load more Button -->
-    <div class="container" style="margin-top:1em; margin-bottom:1em;">
+    <div class="container my-2">
       <div class="row">
         <div class="col-md-12">
           <button type="button" class="btn btn-secondary">Show more</button>
