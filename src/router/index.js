@@ -11,6 +11,7 @@ import profile from '@/pages/Profile'
 import project from '@/pages/Project'
 import projects from '@/pages/Projects'
 import search from '@/pages/Search'
+import ProjectReview from '@/pages/ProjectReview'
 
 Vue.use(Router)
 
@@ -55,6 +56,14 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: search
+    },
+    {
+      path: '/project-review',
+      name: 'ProjectReview',
+      component: ProjectReview,
+      meta: {
+        requiresAdmin: true
+      }
     }
   ]
 })
