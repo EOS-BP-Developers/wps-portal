@@ -16,7 +16,7 @@
     <!-- Project Creation Form -->
     <div class="container">
       <b-form @submit="onSubmit" @reset="onReset" v-if="show" class="text-left">
-          
+
         <h3>Main information</h3>
 
         <b-form-group id="categories"
@@ -24,7 +24,7 @@
                       label-for="categories">
           <b-form-select id="categories"
                         :options="categories"
-                        required                        
+                        required
                         v-model="form.categories">
           </b-form-select>
         </b-form-group>
@@ -137,7 +137,7 @@
                       label="Funding Goal (in EOS, for 1 year)"
                       label-for="funding"
                       description="Your funding goal is the minimum amount you need to run your project">
-          <b-form-input id="funding"  
+          <b-form-input id="funding"
                         type="number"
                         v-model="form.funding"
                         required
@@ -147,9 +147,9 @@
         </b-form-group>
 
         <b-form-group id="duration"
-                      label="Voting Duration (Number of days)"
+                      label="Project Duration (Number of days)"
                       label-for="duration"
-                      description="Maximum 60 days">
+                      description="Maximum 180 days">
           <b-form-input id="duration"
                         type="number"
                         v-model="form.duration"
