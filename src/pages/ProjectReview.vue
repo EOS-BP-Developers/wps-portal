@@ -23,7 +23,7 @@
               <div class="row">
 
                 <!-- Card column -->
-                <div class="col-md-6" v-if="item.category === 'Popular'" v-for="item in projects" style="margin-top:1em;">
+                <div class="col-md-6" v-if="item.category === 'Popular'" v-for="item in projects" style="margin-top:1em;" :key="item.name">
                   <b-card no-body
                           v-bind:img-src="item.image"
                           img-alt="Image"
@@ -125,34 +125,33 @@
 </template>
 
 <script>
-  import CategoryTabContent from '../components/CategoryTabContent.vue'
+import CategoryTabContent from '../components/CategoryTabContent.vue'
 
-  export default {
-    name: 'ProjectReview',
-    components: {
-      CategoryTabContent
-    },
-    data () {
-      return {
-        page: 'Project Review',
-        projects: [
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '12', name: 'Warhammer', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '13', name: 'Project Name', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' }
-        ],
-      }
-    },
+export default {
+  name: 'ProjectReview',
+  components: {
+    CategoryTabContent
+  },
+  data () {
+    return {
+      page: 'Project Review',
+      projects: [
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '12', name: 'Warhammer', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '13', name: 'Project Name', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' }
+      ]
+    }
   }
-
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

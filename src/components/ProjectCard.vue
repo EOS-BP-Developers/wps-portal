@@ -1,6 +1,5 @@
 <template>
-
-
+  <div></div>
 </template>
 
 <script>
@@ -8,7 +7,7 @@ export default {
   name: 'ProjectCard',
   data () {
     return {
-      page: 'ProjectCard',
+      page: 'ProjectCard'
 
     }
   }

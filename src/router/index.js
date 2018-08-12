@@ -11,11 +11,13 @@ import profile from '@/pages/Profile'
 import project from '@/pages/Project'
 import projects from '@/pages/Projects'
 import search from '@/pages/Search'
-import ProjectReview from '@/pages/ProjectReview'
+import projectReview from '@/pages/ProjectReview'
+import signupProposer from '@/pages/SignupProposer'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -58,9 +60,14 @@ export default new Router({
       component: search
     },
     {
+      path: '/signup-proposer',
+      name: 'SignupProposer',
+      component: signupProposer
+    },
+    {
       path: '/project-review',
       name: 'ProjectReview',
-      component: ProjectReview,
+      component: projectReview,
       meta: {
         requiresAdmin: true
       }

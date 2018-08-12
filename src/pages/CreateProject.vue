@@ -4,11 +4,8 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
           <h1 class="display-6">
-            {{ title }}
+            Create New Project
           </h1>
-          <p>
-          {{ subtitle }}
-          </p>
       </div>
     <!-- End of jumbotron -->
     </div>
@@ -16,7 +13,7 @@
     <!-- Project Creation Form -->
     <div class="container">
       <b-form @submit="onSubmit" @reset="onReset" v-if="show" class="text-left">
-          
+
         <h3>Main information</h3>
 
         <b-form-group id="categories"
@@ -24,7 +21,7 @@
                       label-for="categories">
           <b-form-select id="categories"
                         :options="categories"
-                        required                        
+                        required
                         v-model="form.categories">
           </b-form-select>
         </b-form-group>
@@ -137,7 +134,7 @@
                       label="Funding Goal (in EOS, for 1 year)"
                       label-for="funding"
                       description="Your funding goal is the minimum amount you need to run your project">
-          <b-form-input id="funding"  
+          <b-form-input id="funding"
                         type="number"
                         v-model="form.funding"
                         required
@@ -166,7 +163,6 @@
       </b-form>
     </div>
 
-
   </main>
 </template>
 
@@ -180,15 +176,13 @@ export default {
       maxDescription: '2000',
       maxFund: 1000000000,
       maxDays: 60,
-      page: 'CreateProject',
-      title: 'Create New Project',
       form: {
         categories: null,
         title: '',
         subtitle: '',
         media: '',
         overview: '',
-        roadmap: '',
+        roadmap: ''
       },
       categories: [
         { text: 'Select One', value: null },
@@ -199,19 +193,21 @@ export default {
   },
   methods: {
     onSubmit (evt) {
-      evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      evt.preventDefault()
+      alert(JSON.stringify(this.form))
     },
     onReset (evt) {
-      evt.preventDefault();
+      evt.preventDefault()
+
       /* Reset our form values */
-      this.form.category = null;
-      this.form.email = '';
-      this.form.name = '';
-      this.form.checked = [];
+      this.form.category = null
+      this.form.email = ''
+      this.form.name = ''
+      this.form.checked = []
+
       /* Trick to reset/clear native browser form validation state */
-      this.show = false;
-      this.$nextTick(() => { this.show = true });
+      this.show = false
+      this.$nextTick(() => { this.show = true })
     }
   }
 }

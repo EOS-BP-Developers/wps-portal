@@ -5,7 +5,7 @@
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
     <b-navbar-brand to="/">
-      <img src="/static/img/main_logo.png" alt="EOS Worker Proposal">  
+      <img src="/static/img/main_logo.png" alt="EOS Worker Proposal">
     </b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
@@ -14,6 +14,7 @@
         <b-nav-item to="categories">Categories</b-nav-item>
         <b-nav-item to="projects">Projects</b-nav-item>
         <b-nav-item to="create">Create</b-nav-item>
+        <b-nav-item to="signup-proposer">Proposer Signup</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
