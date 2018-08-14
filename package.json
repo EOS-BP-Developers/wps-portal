@@ -5,7 +5,7 @@
   "author": "Hugo Campanella - hugo@hkeos.com",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --port 8080 --host 0.0.0.0 --config build/webpack.dev.conf.js --public $C9_HOSTNAME --history-api-fallback",
+    "dev": "webpack-dev-server --inline --progress --port 8080 --host 0.0.0.0 --config build/webpack.dev.conf.js --history-api-fallback",
     "devenv": "npm run dev",
     "start": "node server.js",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
