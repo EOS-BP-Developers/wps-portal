@@ -189,7 +189,9 @@ export default {
         media: '',
         teamMemberInitial: '',
         overview: '',
-        roadmap: ''
+        roadmap: '',
+        funding: '',
+        duration: ''
       },
       categories: [
         { text: 'Select One', value: null },
@@ -223,9 +225,14 @@ export default {
 
       /* Reset our form values */
       this.form.category = null
-      this.form.email = ''
-      this.form.name = ''
-      this.form.checked = []
+      this.form.title = ''
+      this.form.summary = ''
+      this.form.media = ''
+      this.form.teamMemberInitial = ''
+      this.form.overview = ''
+      this.form.roadmap = ''
+      this.form.funding = ''
+      this.form.duration = ''
 
       /* Trick to reset/clear native browser form validation state */
       this.show = false
