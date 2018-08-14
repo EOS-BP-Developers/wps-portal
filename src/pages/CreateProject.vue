@@ -29,7 +29,7 @@
         <b-form-group id="title"
                       label="Title"
                       label-for="title"
-                      description="Maximum 60 characters">
+                      description="Maximum 256 characters">
           <b-form-input id="title"
                         type="text"
                         v-model="form.title"
@@ -39,17 +39,19 @@
           </b-form-input>
         </b-form-group>
 
-        <b-form-group id="subtitle"
-                      label="Subitle"
-                      label-for="subtitle"
-                      description="Maximum 140 characters">
-          <b-form-input id="subtitle"
+        <b-form-group id="summary"
+                      label="Summary"
+                      label-for="summary"
+                      description="Maximum 400 characters">
+          <b-form-textarea id="summary"
                         type="text"
-                        v-model="form.subtitle"
+                        v-model="form.summary"
                         required
-                        placeholder="Type Project Subtitle"
-                        :maxlength="maxSubtitle">
-          </b-form-input>
+                        placeholder="Type Project Summary"
+                        :rows="3"
+                        :max-rows="3"
+                        :maxlength="maxSummary">
+          </b-form-textarea>
         </b-form-group>
 
         <b-form-group id="media"
@@ -67,21 +69,23 @@
 
         <b-form-group id="overview"
                       label="Project Overview"
-                      label-for="overview">
+                      label-for="overview"
+                      description="Maximum 5000 characters">
           <b-form-textarea id="overview"
                         type="text"
                         v-model="form.overview"
                         required
-                        placeholder="Describe your porject to the community, your story will help us to understand why you started this project and why we need to fund it."
+                        placeholder="Describe your project to the community, your story will help us to understand why you started this project and why we need to fund it."
                         :rows="6"
                         :max-rows="6"
-                        :maxlength="maxDescription">
+                        :maxlength="maxOverview">
           </b-form-textarea>
         </b-form-group>
 
         <b-form-group id="roadmap"
                       label="Financial Roadmap"
-                      label-for="roadmap">
+                      label-for="roadmap"
+                      description="Maximum 2000 characters">
           <b-form-textarea id="roadmap"
                         type="text"
                         v-model="form.roadmap"
@@ -89,44 +93,43 @@
                         placeholder="Describe detailed plan for the use of raised funds."
                         :rows="6"
                         :max-rows="6"
-                        :maxlength="maxDescription">
+                        :maxlength="maxRoadmap">
           </b-form-textarea>
         </b-form-group>
 
         <h3>Team</h3>
-
-        <b-form-group id="teamMember1"
-                      label="Team Member 1"
-                      label-for="teamMember1">
-          <b-form-input id="teamMember1"
+        <!-- Team Member Input section  -->
+        <b-form-group id="teamMemberInitial"
+                      label="Team Member"
+                      label-for="teamMemberInitial">
+          <b-form-input id="teamMemberInitial"
                         type="url"
-                        v-model="form.teamMember1"
+                        v-model="form.teamMemberInitial"
                         required
                         placeholder="Copy Paste Linkedin Profile URL">
           </b-form-input>
         </b-form-group>
-
-        <b-form-group id="teamMember2"
-                      label="Team Member 2"
-                      label-for="teamMember2">
-          <b-form-input id="teamMember2"
+        <!-- Add remove Team Member section click on button to add Team member form group -->
+        <b-form-group v-for="(row, index) in rows"
+                      id="teamMember"
+                      label="Team Member"
+                      label-for="teamMember">
+          <b-form-input id="teamMember"
                         type="url"
-                        v-model="form.teamMember2"
+                        v-model="row.url"
                         required
                         placeholder="Copy Paste Linkedin Profile URL">
           </b-form-input>
         </b-form-group>
-
-        <b-form-group id="teamMember3"
-                      label="Team Member 3"
-                      label-for="teamMember3">
-          <b-form-input id="teamMember3"
-                        type="url"
-                        v-model="form.teamMember3"
-                        required
-                        placeholder="Copy Paste Linkedin Profile URL">
-          </b-form-input>
-        </b-form-group>
+        <!--Add and remove Team member buttons-->
+        <div class="my-3">
+          <b-button variant="primary" @click="addRow">
+          Add Team Member
+          </b-button>
+          <b-button variant="danger" v-on:click="removeElement(index);" >
+          Remove Team Member
+          </b-button>
+        </div>
 
         <h3>Funding</h3>
 
@@ -139,7 +142,8 @@
                         v-model="form.funding"
                         required
                         placeholder="Type amount"
-                        :max="maxFund">
+                        :max="maxFund"
+                        :min="minFund">
           </b-form-input>
         </b-form-group>
 
@@ -171,16 +175,19 @@ export default {
   name: 'CreateProject',
   data () {
     return {
-      maxTitle: '60',
-      maxSubtitle: '140',
-      maxDescription: '2000',
+      maxTitle: '256',
+      maxSummary: '400',
+      maxOverview: '5000',
+      maxRoadmap: '2000',
       maxFund: 1000000000,
+      minFund: 1,
       maxDays: 60,
       form: {
         categories: null,
         title: '',
-        subtitle: '',
+        summary: '',
         media: '',
+        teamMemberInitial: '',
         overview: '',
         roadmap: ''
       },
@@ -188,10 +195,25 @@ export default {
         { text: 'Select One', value: null },
         'Community', 'Education', 'Games', 'Others'
       ],
-      show: true
+      show: true,
+      rows: []
     }
   },
   methods: {
+    // Dynamic From for Team members
+    addRow: function() {
+      var elem = document.createElement('div');
+      this.rows.push({
+        teamMember: "",
+      });
+    },
+    removeElement: function(index) {
+      this.rows.splice(index, 1);
+    },
+    setFilename: function(event, row) {
+      var file = event.target.files[0];
+      row.file = file
+    },
     onSubmit (evt) {
       evt.preventDefault()
       alert(JSON.stringify(this.form))
