@@ -42,7 +42,7 @@
                   <b-card-group deck class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="item in computedNumbers">
+                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="(item, index) in computedNumbers" :key="index">
 
                         <!-- Project Card -->
                         <b-card   no-body
@@ -96,7 +96,7 @@
                                 class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="item in computedNumbers">
+                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="(item, index) in computedNumbers" :key="index">
 
                         <!-- Project Card -->
                         <b-card   no-body
@@ -176,6 +176,7 @@
         </div>
       </div>
 
+      <pre><code>Proposals: {{proposals}} </code></pre>
     <!-- End of Categories tabs content -->
     </div>
 
@@ -214,7 +215,8 @@ export default {
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '143', category: 'Community' },
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular' },
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '943', category: 'Community' }
-      ]
+      ],
+      proposals: null
     }
   },
   computed: {
@@ -222,6 +224,25 @@ export default {
       let projects = this.projects
       return projects.sort((a, b) => Number(b.votes) - Number(a.votes))
     }
+  },
+  methods: {
+    async getProposals () {
+      this.proposals = await this.$store.getters['api/GET_API'].getProposals()
+
+      /*
+      this.$store.getters['api/GET_API'].getProposals()
+      this.$store.getters['api/GET_API'].getRejectedProposals()
+      this.$store.getters['api/GET_API'].getFinishedProposals()
+      this.$store.getters['api/GET_API'].getProposers()
+      this.$store.getters['api/GET_API'].getReviewers()
+      this.$store.getters['api/GET_API'].getCommittees()
+      this.$store.getters['api/GET_API'].getVotings()
+      this.$store.getters['api/GET_API'].getWpsGlobal()
+      */
+    }
+  },
+  created () {
+    this.getProposals()
   }
 }
 </script>

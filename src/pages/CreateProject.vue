@@ -111,6 +111,7 @@
         </b-form-group>
         <!-- Add remove Team Member section click on button to add Team member form group -->
         <b-form-group v-for="(row, index) in rows"
+                      :key="index"
                       id="teamMember"
                       label="Team Member"
                       label-for="teamMember">
@@ -203,17 +204,16 @@ export default {
   },
   methods: {
     // Dynamic From for Team members
-    addRow: function() {
-      var elem = document.createElement('div');
+    addRow: function () {
       this.rows.push({
-        teamMember: "",
-      });
+        teamMember: ''
+      })
     },
-    removeElement: function(index) {
-      this.rows.splice(index, 1);
+    removeElement: function (index) {
+      this.rows.splice(index, 1)
     },
-    setFilename: function(event, row) {
-      var file = event.target.files[0];
+    setFilename: function (event, row) {
+      var file = event.target.files[0]
       row.file = file
     },
     onSubmit (evt) {
