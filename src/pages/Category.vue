@@ -22,9 +22,9 @@
               <b-tab title="Hot" active>
 
                 <b-card-group deck class="mb-3">
-                    
+
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="item in computedNumbers">
+                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="item in computedNumbers" :key="item.name">
 
                         <!-- Project Card -->
                         <b-card   no-body
@@ -39,21 +39,20 @@
                           <b-card-body>
                             <p class="d-inline text-success">{{ item.status }}</p>
                             <span class="badge badge-secondary">{{ item.category }}</span>
-                            <p class="d-inline text-info">{{ item.votes }} votes</p>                        
+                            <p class="d-inline text-info">{{ item.votes }} votes</p>
                             <p class="card-text mt-3">
                               {{ item.description }}
                             </p>
                           </b-card-body>
                           <b-card-footer>
                             <button type="button" class="btn btn-secondary">View</button>
-                          </b-card-footer>                    
+                          </b-card-footer>
                         </b-card>
 
                       </div>
-                    </div>   
+                    </div>
 
                   </b-card-group>
-
 
               <!-- Latest Tab - Most Recent projects on top -->
               </b-tab>
@@ -117,14 +116,13 @@ export default {
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '143', category: 'Community' },
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular' },
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '943', category: 'Community' }
-      ],
+      ]
     }
   },
-    computed: {
-    computedNumbers() {
-      return this.projects.sort(function(a, b) {
-        return b.votes - a.votes;
-      });
+  computed: {
+    computedNumbers () {
+      let projects = this.projects
+      return projects.sort((a, b) => Number(b.votes) - Number(a.votes))
     }
   }
 }

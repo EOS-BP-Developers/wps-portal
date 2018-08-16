@@ -17,7 +17,7 @@
     <!-- WPS statistics container -->
     <div class="container">
       <div class="row">
-        <div class="col-md-3" v-for="(value, key) in statistics">
+        <div class="col-md-3" v-for="(value, key) in statistics" :key="key">
           <h2 class="mt-1">{{ value }}</h2>
           <p>{{ key }}</p>
         </div>
@@ -42,7 +42,7 @@
                   <b-card-group deck class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="item in sortedItems">
+                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="(item, index) in computedNumbers" :key="index">
 
                         <!-- Project Card -->
                         <b-card   no-body
@@ -136,7 +136,7 @@
                                 class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="item in sortedItems">
+                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="(item, index) in computedNumbers" :key="index">
 
                         <!-- Project Card -->
                         <b-card   no-body
@@ -168,7 +168,6 @@
                     </div>
 
                   </b-card-group>
-
 
               <!-- Latest Tab - Most Recent projects on top -->
               </b-tab>
@@ -249,6 +248,7 @@
         </div>
       </div>
 
+      <pre><code>Proposals: {{proposals}} </code></pre>
     <!-- End of Categories tabs content -->
     </div>
 
@@ -290,6 +290,7 @@ export default {
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular', timestamp: parseDate('2018-07-07 09+07:00') },
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '943', category: 'Community', timestamp: parseDate('2018-08-12 09+07:00') }
       ],
+      proposals: null
     }
   },
   computed: {
@@ -301,9 +302,30 @@ export default {
     }
   },
   methods: {
+    async getProposals () {
+      this.proposals = await this.$store.getters['api/GET_API'].getProposals()
+
+      /*
+      this.$store.getters['api/GET_API'].getProposals()
+      this.$store.getters['api/GET_API'].getRejectedProposals()
+      this.$store.getters['api/GET_API'].getFinishedProposals()
+      this.$store.getters['api/GET_API'].getProposers()
+      this.$store.getters['api/GET_API'].getReviewers()
+      this.$store.getters['api/GET_API'].getCommittees()
+      this.$store.getters['api/GET_API'].getVotings()
+      this.$store.getters['api/GET_API'].getWpsGlobal()
+      */
+    },
     sortBy(prop) {
       this.sortProp = prop;
+    },
+    computedNumbers () {
+      let projects = this.projects
+      return projects.sort((a, b) => Number(b.votes) - Number(a.votes))
     }
+  },
+  created () {
+    this.getProposals()
   }
 }
 </script>

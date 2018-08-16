@@ -23,7 +23,7 @@
               <div class="row">
 
                 <!-- Card column -->
-                <div class="col-md-6" v-if="item.status === 'Pending Review'" v-for="item in projects" style="margin-top:1em;">
+                <div class="col-md-6" v-if="item.status === 'Pending Review'" v-for="item in projects" style="margin-top:1em;" :key="item.name">
                   <b-card no-body
                           v-bind:img-src="item.image"
                           img-alt="Image"
@@ -216,9 +216,9 @@
           { image: 'https://picsum.photos/600/300/?image=25', status: 'Rejected', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' }
         ],
       }
-    },
+    }
   }
-
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
