@@ -149,9 +149,9 @@
         </b-form-group>
 
         <b-form-group id="duration"
-                      label="Voting Duration (Number of days)"
+                      label="Project Duration (Number of days)"
                       label-for="duration"
-                      description="Maximum 60 days">
+                      description="Maximum 180 days">
           <b-form-input id="duration"
                         type="number"
                         v-model="form.duration"
