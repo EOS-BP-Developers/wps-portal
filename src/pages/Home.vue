@@ -29,18 +29,18 @@
     <!-- Start Tabs Container -->
     <div class="container px-0 mt-5">
       <!-- Start of Categories Tabs -->
-      <b-tabs class="mt-3"
+      <b-tabs pills
+              class="mt-3"
               nav-class="nav justify-content-center"
               active
               content-class="nav-item"
               title-link-class="nav-link">
         <!-- Popular Projects Tab -->
         <b-tab title="Popular">
-
-            <b-tabs class="mt-3"
+            <b-tabs pills
+                    class="mt-3"
                     nav-class="justify-content-center"
                     content-class="nav-item">
-
               <!-- Hot Tab - Most voted projects on top -->
               <b-tab title="Hot"
                      active>
