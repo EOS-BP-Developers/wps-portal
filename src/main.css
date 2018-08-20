@@ -1,0 +1,81 @@
+/* All Jumbotron style */
+.jumbotron {
+  background: #8E2DE2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /*Font*/
+  color: white;
+}
+
+/* Main navbar overall style */
+.navbar {
+  background: white;
+  padding-bottom: auto;
+  padding-top:auto;
+  border-bottom: solid 1px #c6c8ca;
+}
+
+
+/* Main navbar items */
+.navbar-light .navbar-nav .nav-link {
+  color: #203A43;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #4A00E0;
+}
+
+
+/* All H2 titles style */
+h2 {
+  color: #203A43;
+}
+
+/* Secondary navbar items style*/
+.nav-link {
+  color: #203A43;
+}
+
+.nav-link:hover {
+  color: #4A00E0;
+}
+
+/* Un-Active Secondary Tab - VueB item is Pill */
+.nav-pills .nav-link {
+  border-radius: 0;
+}
+.nav-pills .nav-link {
+  border-bottom: solid 1px #4e555b;
+}
+
+/* Active Pill */
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background: none;
+  color: #4A00E0;
+  border-radius: 0;
+  border-bottom: solid 1px #4A00E0;
+}
+
+/* Margin under Hot/Latest Pills */
+.tab-content {
+  margin-top: 16px;
+}
+
+/* Homepage stats panels dividers item */
+
+.row.stats-panel [class*='col-']:not(:last-child):after {
+  background: #e0e0e0;
+  width: 1px;
+  content: "";
+  display:block;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  right: 0;
+  min-height: 90px;
+}
+
+.nav-tabs {
+  border-bottom: none;
+}
