@@ -132,11 +132,14 @@
 </template>
 
 <script>
+import ScatterJS from 'scatter-js/dist/scatter.esm';
+
 export default {
   name: 'Profile',
   data () {
     return {
       page: 'My Profile',
+      subtitle: '',
       form: {
         username: '',
         picture: '',
@@ -152,6 +155,8 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
+      // TODO: Link Scatter
+      console.log(ScatterJS);
       alert(JSON.stringify(this.form))
     },
     onReset (evt) {

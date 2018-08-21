@@ -14,7 +14,7 @@
         <b-nav-item to="categories">Categories</b-nav-item>
         <b-nav-item to="projects">Projects</b-nav-item>
         <b-nav-item to="create">Create</b-nav-item>
-        <b-nav-item to="signup-proposer">Proposer Signup</b-nav-item>
+        <b-nav-item to="profile">Proposer Signup</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -30,7 +30,7 @@
           <b-dropdown-item href="#">ZH</b-dropdown-item>
           <b-dropdown-item href="#">KR</b-dropdown-item>
         </b-nav-item-dropdown>
-
+        <b-nav-item @click="linkScatter">Link Scatter</b-nav-item>
         <b-nav-item-dropdown right>
           <!-- Using button-content slot -->
           <template slot="button-content">
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import ScatterJS from 'scatter-js/dist/scatter.esm';
+
 export default {
   name: 'Header',
   components: {
@@ -59,6 +61,10 @@ export default {
   methods: {
     push (route) {
       this.$router.push(route)
+    },
+    linkScatter() {
+      console.log(ScatterJS);
+      // TODO: Link Scatter
     }
   }
 }
