@@ -11,6 +11,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
+// Custom CSS
+import './main.css';
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

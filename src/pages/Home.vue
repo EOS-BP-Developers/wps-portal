@@ -16,8 +16,8 @@
 
     <!-- WPS statistics container -->
     <div class="container">
-      <div class="row">
-        <div class="col-md-3" v-for="(value, key) in statistics" :key="key">
+      <div class="row shadow-sm stats-panel">
+        <div class="col-md-3 px-0 py-2 stats-item" v-for="(value, key) in statistics" :key="key">
           <h2 class="mt-1">{{ value }}</h2>
           <p>{{ key }}</p>
         </div>
@@ -27,18 +27,22 @@
     </div>
 
     <!-- Start Tabs Container -->
-    <div class="container mt-2">
+    <div class="container px-0 mt-5">
       <!-- Start of Categories Tabs -->
-      <b-tabs class="text-center">
+      <b-tabs pills
+              class="mt-3"
+              nav-class="nav justify-content-center"
+              active
+              content-class="nav-item"
+              title-link-class="nav-link">
         <!-- Popular Projects Tab -->
-        <b-tab title="Popular" active>
-
-          <b-card no-body>
-            <b-tabs card>
-
+        <b-tab title="Popular">
+            <b-tabs pills
+                    class="mt-3"
+                    nav-class="justify-content-center"
+                    content-class="nav-item">
               <!-- Hot Tab - Most voted projects on top -->
-              <b-tab title="Hot" active @click="sortBy('votes')">
-
+              <b-tab title="Hot" active>
                   <b-card-group deck class="mb-3">
 
                     <div class="row">
@@ -77,7 +81,7 @@
 
               </b-tab>
 
-              <b-tab title="Latest" @click="sortBy('timestamp')">
+              <b-tab title="Latest">
 
                 <b-card-group deck
                               class="mb-3">
@@ -119,7 +123,7 @@
               </b-tab>
 
             </b-tabs>
-          </b-card>
+
 
         <!-- End of Popular Tab -->
         </b-tab>
@@ -270,10 +274,10 @@ export default {
       title: 'Welcome to the WPS voting Portal',
       subtitle: 'A place to fund innovation on the EOS blockchain',
       statistics: {
-        'Total Voters': '183,434',
-        'Total Projects': '143,432',
-        'Funded Projects': '734,345',
-        'Ongoing Projects': '235,289'
+        'TOTAL VOTERS': '183,434',
+        'TOTAL PROJECTS': '143,432',
+        'FUNDED PROJECTS': '734,345',
+        'ONGOING PROJECTS': '235,289'
       },
       sortProp: 'votes',
       projects: [
