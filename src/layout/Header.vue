@@ -13,6 +13,7 @@
     <b-collapse is-nav id="nav_collapse">
 
       <b-navbar-nav>
+        <b-nav-item to="/">Home</b-nav-item>
         <b-nav-item to="categories">Categories</b-nav-item>
         <b-nav-item to="projects">Projects</b-nav-item>
         <b-nav-item to="create">Create</b-nav-item>
