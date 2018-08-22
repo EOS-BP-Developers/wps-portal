@@ -46,27 +46,27 @@
                   <b-card-group deck class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="(item, index) in computedNumbers" :key="index">
+                      <div class="col-md-4" v-if="proposal.category === 'Emergency'" v-for="(proposal, index) in computedNumbers" :key="index">
 
                         <!-- Project Card -->
                         <b-card   no-body
-                                  v-bind:img-src="item.image"
+                                  v-bind:img-src="proposal.project_img_url"
                                   img-alt="Image"
                                   img-top
                                   tag="div"
                                   style="max-width: 20rem;"
                                   class="mb-2"
                                   >
-                          <h4 slot="header">{{ item.name }}</h4>
+                          <h4 slot="header">{{ proposal.title }}</h4>
                           <b-card-body>
-                            <p class="d-inline text-success">{{ item.status }}</p>
-                            <span class="badge badge-secondary">{{ item.category }}</span>
-                            <p class="d-inline text-info">{{ item.votes }} votes</p>
+                            <p class="d-inline text-success">{{ proposal.status }}</p>
+                            <span class="badge badge-secondary">{{ proposal.category }}</span>
+                            <p class="d-inline text-info">{{ proposal.total_votes }} votes</p>
                             <p class="card-text mt-3">
-                              {{ item.description }}
+                              {{ proposal.summary }}
                             </p>
                             <p class="card-text mt-3">
-                              {{ item.timestamp }}
+                              {{ proposal.fund_start_time }}
                             </p>
                           </b-card-body>
                           <b-card-footer>
@@ -83,31 +83,30 @@
 
               <b-tab title="Latest">
 
-                <b-card-group deck
-                              class="mb-3">
+                <b-card-group deck class="mb-3">
 
                   <div class="row">
-                    <div class="col-md-4" v-if="item.category === 'Popular'" v-for="item in sortedItems">
+                    <div class="col-md-4" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in computedNumbers" :key="index">
 
                       <!-- Project Card -->
                       <b-card   no-body
-                                v-bind:img-src="item.image"
+                                v-bind:img-src="proposal.project_img_url"
                                 img-alt="Image"
                                 img-top
                                 tag="div"
                                 style="max-width: 20rem;"
                                 class="mb-2"
                       >
-                        <h4 slot="header">{{ item.name }}</h4>
+                        <h4 slot="header">{{ proposal.title }}</h4>
                         <b-card-body>
-                          <p class="d-inline text-success">{{ item.status }}</p>
-                          <span class="badge badge-secondary">{{ item.category }}</span>
-                          <p class="d-inline text-info">{{ item.votes }} votes</p>
+                          <p class="d-inline text-success">{{ proposal.status }}</p>
+                          <span class="badge badge-secondary">{{ proposal.category }}</span>
+                          <p class="d-inline text-info">{{ proposal.total_votes }} votes</p>
                           <p class="card-text mt-3">
-                            {{ item.description }}
+                            {{ proposal.summary }}
                           </p>
                           <p class="card-text mt-3">
-                            {{ item.timestamp }}
+                            {{ proposal.fund_start_time }}
                           </p>
                         </b-card-body>
                         <b-card-footer>
@@ -294,15 +293,13 @@ export default {
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular', timestamp: parseDate('2018-07-07 09+07:00') },
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '943', category: 'Community', timestamp: parseDate('2018-08-12 09+07:00') }
       ],
-      proposals: null
+      proposals: []
     }
   },
   computed: {
-    sortedItems() {
-      const self = this;
-      return self.projects.sort(function(a, b) {
-        return b[self.sortProp] - a[self.sortProp];
-      });
+    computedNumbers () {
+      let projects = this.proposals
+      return projects.sort((a, b) => Number(b.votes) - Number(a.votes))
     }
   },
   methods: {
@@ -319,13 +316,6 @@ export default {
       this.$store.getters['api/GET_API'].getVotings()
       this.$store.getters['api/GET_API'].getWpsGlobal()
       */
-    },
-    sortBy(prop) {
-      this.sortProp = prop;
-    },
-    computedNumbers () {
-      let projects = this.projects
-      return projects.sort((a, b) => Number(b.votes) - Number(a.votes))
     }
   },
   created () {
@@ -336,5 +326,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.card-deck > .row {
+  width: 100%; /* For strange behavior when only 1 card exist, .row does not span full width */
+}
 </style>
