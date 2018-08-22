@@ -19,6 +19,9 @@ export default {
   components: {
     AppHeader,
     AppFooter
+  },
+  created () {
+    this.$store.dispatch('api/CONNECT_SCATTER')
   }
 }
 </script>

@@ -31,13 +31,22 @@
           <b-dropdown-item href="#">KR</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item-dropdown right>
+        <b-nav-item right v-if="!scatter">
+          Download Scatter
+        </b-nav-item>
+
+        <b-nav-item right v-if="scatter && !identity" @click="linkIdentity">
+          Link Scatter
+        </b-nav-item>
+
+        <b-nav-item-dropdown right v-if="scatter && identity">
           <!-- Using button-content slot -->
           <template slot="button-content">
-            <em> Link Scatter </em>
+            <em> {{ scatterAccount.name }} </em>
           </template>
           <b-dropdown-item to="profile">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Signout</b-dropdown-item>
+          <b-dropdown-item href="#" @click="changeIdentity">Change Identity </b-dropdown-item>
+          <b-dropdown-item href="#" @click="removeIdentity">Signout</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
@@ -46,6 +55,8 @@
 </template>
 
 <script>
+import {mapState, mapGetters} from 'vuex'
+
 export default {
   name: 'Header',
   components: {
@@ -56,9 +67,33 @@ export default {
 
     }
   },
+  computed: {
+    ...mapState({
+      scatter: state => state.api.scatter,
+      defaultNetwork: state => state.api.defaultNetwork
+    }),
+    ...mapGetters({
+      identity: 'api/GET_SCATTER_IDENTITY',
+      scatterAccount: 'api/GET_SCATTER_ACCOUNT'
+    })
+  },
   methods: {
     push (route) {
       this.$router.push(route)
+    },
+    linkIdentity () {
+      this.scatter.getIdentity({accounts: [ this.defaultNetwork ]}).then(identity => {
+        console.log(identity)
+        // this.updateAccount(this.scatterAccount.name)
+      })
+    },
+    changeIdentity () {
+      this.scatter.forgetIdentity().then(() => {
+        this.linkIdentity()
+      })
+    },
+    removeIdentity () {
+      this.scatter.forgetIdentity()
     }
   }
 }
