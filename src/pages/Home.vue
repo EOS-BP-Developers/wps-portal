@@ -49,30 +49,14 @@
                       <div class="col-md-4" v-if="proposal.category === 'Emergency'" v-for="(proposal, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
-                        <b-card   no-body
-                                  v-bind:img-src="proposal.project_img_url"
-                                  img-alt="Image"
-                                  img-top
-                                  tag="div"
-                                  style="max-width: 20rem;"
-                                  class="mb-2"
-                                  >
-                          <h4 slot="header">{{ proposal.title }}</h4>
-                          <b-card-body>
-                            <p class="d-inline text-success">{{ proposal.status }}</p>
-                            <span class="badge badge-secondary">{{ proposal.category }}</span>
-                            <p class="d-inline text-info">{{ proposal.total_votes }} votes</p>
-                            <p class="card-text mt-3">
-                              {{ proposal.summary }}
-                            </p>
-                            <p class="card-text mt-3">
-                              {{ proposal.fund_start_time }}
-                            </p>
-                          </b-card-body>
-                          <b-card-footer>
-                            <button type="button" class="btn btn-secondary">View</button>
-                          </b-card-footer>
-                        </b-card>
+                        <project-card :project_img_url="proposal.project_img_url"
+                                      :title="proposal.title"
+                                      :status="proposal.status"
+                                      :category="proposal.category"
+                                      :total_votes="proposal.total_votes"
+                                      :summary="proposal.summary"
+                                      :fund_start_time="proposal.fund_start_time">
+                        </project-card>
 
                       </div>
                     </div>
@@ -89,30 +73,14 @@
                     <div class="col-md-4" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByLatest" :key="index">
 
                       <!-- Project Card -->
-                      <b-card   no-body
-                                v-bind:img-src="proposal.project_img_url"
-                                img-alt="Image"
-                                img-top
-                                tag="div"
-                                style="max-width: 20rem;"
-                                class="mb-2"
-                      >
-                        <h4 slot="header">{{ proposal.title }}</h4>
-                        <b-card-body>
-                          <p class="d-inline text-success">{{ proposal.status }}</p>
-                          <span class="badge badge-secondary">{{ proposal.category }}</span>
-                          <p class="d-inline text-info">{{ proposal.total_votes }} votes</p>
-                          <p class="card-text mt-3">
-                            {{ proposal.summary }}
-                          </p>
-                          <p class="card-text mt-3">
-                            {{ proposal.fund_start_time }}
-                          </p>
-                        </b-card-body>
-                        <b-card-footer>
-                          <button type="button" class="btn btn-secondary">View</button>
-                        </b-card-footer>
-                      </b-card>
+                      <project-card :project_img_url="proposal.project_img_url"
+                                    :title="proposal.title"
+                                    :status="proposal.status"
+                                    :category="proposal.category"
+                                    :total_votes="proposal.total_votes"
+                                    :summary="proposal.summary"
+                                    :fund_start_time="proposal.fund_start_time">
+                      </project-card>
 
                     </div>
                   </div>
@@ -142,30 +110,14 @@
                       <div class="col-md-4" v-if="item.category === 'Community'" v-for="(item, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
-                        <b-card   no-body
-                                  v-bind:img-src="item.image"
-                                  img-alt="Image"
-                                  img-top
-                                  tag="div"
-                                  style="max-width: 20rem;"
-                                  class="mb-2"
-                                  >
-                          <h4 slot="header">{{ item.name }}</h4>
-                          <b-card-body>
-                            <p class="d-inline text-success">{{ item.status }}</p>
-                            <span class="badge badge-secondary">{{ item.category }}</span>
-                            <p class="d-inline text-info">{{ item.votes }} votes</p>
-                            <p class="card-text mt-3">
-                              {{ item.description }}
-                            </p>
-                            <p class="card-text mt-3">
-                              {{ item.timestamp }}
-                            </p>
-                          </b-card-body>
-                          <b-card-footer>
-                            <button type="button" class="btn btn-secondary">View</button>
-                          </b-card-footer>
-                        </b-card>
+                        <project-card :project_img_url="proposal.project_img_url"
+                                      :title="proposal.title"
+                                      :status="proposal.status"
+                                      :category="proposal.category"
+                                      :total_votes="proposal.total_votes"
+                                      :summary="proposal.summary"
+                                      :fund_start_time="proposal.fund_start_time">
+                        </project-card>
 
                       </div>
                     </div>
@@ -183,30 +135,14 @@
                     <div class="col-md-4" v-if="item.category === 'Community'" v-for="item in sortByLatest">
 
                       <!-- Project Card -->
-                      <b-card   no-body
-                                v-bind:img-src="item.image"
-                                img-alt="Image"
-                                img-top
-                                tag="div"
-                                style="max-width: 20rem;"
-                                class="mb-2"
-                      >
-                        <h4 slot="header">{{ item.name }}</h4>
-                        <b-card-body>
-                          <p class="d-inline text-success">{{ item.status }}</p>
-                          <span class="badge badge-secondary">{{ item.category }}</span>
-                          <p class="d-inline text-info">{{ item.votes }} votes</p>
-                          <p class="card-text mt-3">
-                            {{ item.description }}
-                          </p>
-                          <p class="card-text mt-3">
-                            {{ item.timestamp }}
-                          </p>
-                        </b-card-body>
-                        <b-card-footer>
-                          <button type="button" class="btn btn-secondary">View</button>
-                        </b-card-footer>
-                      </b-card>
+                      <project-card :project_img_url="proposal.project_img_url"
+                                    :title="proposal.title"
+                                    :status="proposal.status"
+                                    :category="proposal.category"
+                                    :total_votes="proposal.total_votes"
+                                    :summary="proposal.summary"
+                                    :fund_start_time="proposal.fund_start_time">
+                      </project-card>
 
                     </div>
                   </div>
@@ -261,12 +197,14 @@
 
 <script>
 import CategoryTabContent from '../components/CategoryTabContent.vue'
+import ProjectCard from '../components/ProjectCard.vue'
 import { parseDate } from '../utils/parseDate'
 
 export default {
   name: 'Home',
   components: {
-    CategoryTabContent
+    CategoryTabContent,
+    ProjectCard
   },
   data () {
     return {
