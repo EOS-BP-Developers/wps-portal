@@ -278,7 +278,6 @@ export default {
         'FUNDED PROJECTS': '734,345',
         'ONGOING PROJECTS': '235,289'
       },
-      sortProp: 'votes',
       projects: [
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Warhammer', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular', timestamp: parseDate('2018-02-08 09+07:00') },
         { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '345', category: 'Popular', timestamp: parseDate('2018-02-18 09+07:00') },
