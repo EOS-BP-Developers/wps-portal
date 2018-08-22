@@ -5,7 +5,9 @@
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
     <b-navbar-brand to="/">
-      <img src="/static/img/main_logo.png" alt="EOS Worker Proposal">
+      <object width="100px" height="35px" data="/static/img/main_logo.svg" type="image/svg+xml">
+        <img src="/static/img/main_logo.png" />
+      </object>
     </b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
@@ -25,10 +27,10 @@
           <b-button size="sm" class="my-2 my-sm-0" type="submit" @click="push('search')">Search</b-button>
         </b-nav-form>
 
-        <b-nav-item-dropdown text="Lang" right>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ZH</b-dropdown-item>
-          <b-dropdown-item href="#">KR</b-dropdown-item>
+        <b-nav-item-dropdown :text="currentLang" right>
+          <b-dropdown-item href="#" @click="changeLang('EN')">EN</b-dropdown-item>
+          <b-dropdown-item href="#" @click="changeLang('ZH')">ZH</b-dropdown-item>
+          <b-dropdown-item href="#" @click="changeLang('KR')">KR</b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item right v-if="!scatter">
@@ -64,7 +66,7 @@ export default {
   },
   data () {
     return {
-
+      currentLang: 'EN'
     }
   },
   computed: {
@@ -80,6 +82,9 @@ export default {
   methods: {
     push (route) {
       this.$router.push(route)
+    },
+    changeLang (newLang) {
+      this.currentLang = newLang
     },
     linkIdentity () {
       this.scatter.getIdentity({accounts: [ this.defaultNetwork ]}).then(identity => {
