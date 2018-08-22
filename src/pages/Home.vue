@@ -46,7 +46,7 @@
                   <b-card-group deck class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="proposal.category === 'Emergency'" v-for="(proposal, index) in computedNumbers" :key="index">
+                      <div class="col-md-4" v-if="proposal.category === 'Emergency'" v-for="(proposal, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
                         <b-card   no-body
@@ -86,7 +86,7 @@
                 <b-card-group deck class="mb-3">
 
                   <div class="row">
-                    <div class="col-md-4" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in computedNumbers" :key="index">
+                    <div class="col-md-4" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByLatest" :key="index">
 
                       <!-- Project Card -->
                       <b-card   no-body
@@ -139,7 +139,7 @@
                                 class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="(item, index) in computedNumbers" :key="index">
+                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="(item, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
                         <b-card   no-body
@@ -180,7 +180,7 @@
                               class="mb-3">
 
                   <div class="row">
-                    <div class="col-md-4" v-if="item.category === 'Community'" v-for="item in sortedItems">
+                    <div class="col-md-4" v-if="item.category === 'Community'" v-for="item in sortByLatest">
 
                       <!-- Project Card -->
                       <b-card   no-body
@@ -279,26 +279,28 @@ export default {
         'ONGOING PROJECTS': '235,289'
       },
       projects: [
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Warhammer', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular', timestamp: parseDate('2018-02-08 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '345', category: 'Popular', timestamp: parseDate('2018-02-18 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '256', category: 'Community', timestamp: parseDate('2018-04-08 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '846', category: 'Popular', timestamp: parseDate('2018-05-28 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '176', category: 'Community', timestamp: parseDate('2018-01-04 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular', timestamp: parseDate('2018-07-31 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '112', category: 'Community', timestamp: parseDate('2018-12-08 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '543', category: 'Popular', timestamp: parseDate('2018-03-09 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '165', category: 'Community', timestamp: parseDate('2018-02-08 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '143', category: 'Community', timestamp: parseDate('2018-10-02 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular', timestamp: parseDate('2018-07-07 09+07:00') },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '943', category: 'Community', timestamp: parseDate('2018-08-12 09+07:00') }
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Warhammer', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular', timestamp: '2018-02-08 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '345', category: 'Popular', timestamp: '2018-02-18 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '256', category: 'Community', timestamp: '2018-04-08 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '846', category: 'Popular', timestamp: '2018-05-28 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '176', category: 'Community', timestamp: '2018-01-04 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular', timestamp: '2018-07-31 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '112', category: 'Community', timestamp: '2018-12-08 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '543', category: 'Popular', timestamp: '2018-03-09 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '165', category: 'Community', timestamp: '2018-02-08 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '143', category: 'Community', timestamp: '2018-10-02 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular', timestamp: '2018-07-07 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '943', category: 'Community', timestamp: '2018-08-12 09+07:00' }
       ],
       proposals: []
     }
   },
   computed: {
-    computedNumbers () {
-      let projects = this.proposals
-      return projects.sort((a, b) => Number(b.votes) - Number(a.votes))
+    sortByVotes () {
+      return Array.prototype.slice.call(this.proposals).sort((a, b) => Number(b.votes) - Number(a.votes))
+    },
+    sortByLatest () {
+      return Array.prototype.slice.call(this.proposals).sort((a, b) => parseDate(b.timestamp) - parseDate(a.timestamp))
     }
   },
   methods: {
