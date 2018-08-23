@@ -45,7 +45,7 @@
                                     type="url"
                                     v-model="form.picture"
                                     required
-                                    placeholder="Copy Paste a picture URL">
+                                    placeholder="Enter a picture URL">
                       </b-form-input>
                     </b-form-group>
 

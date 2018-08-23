@@ -5,12 +5,15 @@
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
     <b-navbar-brand to="/">
-      <img src="/static/img/main_logo.png" alt="EOS Worker Proposal">
+      <object width="100px" height="35px" data="/static/img/main_logo.svg" type="image/svg+xml">
+        <img src="/static/img/main_logo.png" />
+      </object>
     </b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
 
       <b-navbar-nav>
+        <b-nav-item to="/">Home</b-nav-item>
         <b-nav-item to="categories">Categories</b-nav-item>
         <b-nav-item to="projects">Projects</b-nav-item>
         <b-nav-item to="create">Create</b-nav-item>
@@ -25,19 +28,28 @@
           <b-button size="sm" class="my-2 my-sm-0" type="submit" @click="push('search')">Search</b-button>
         </b-nav-form>
 
-        <b-nav-item-dropdown text="Lang" right>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ZH</b-dropdown-item>
-          <b-dropdown-item href="#">KR</b-dropdown-item>
+        <b-nav-item-dropdown :text="currentLang" right>
+          <b-dropdown-item href="#" @click="changeLang('EN')">EN</b-dropdown-item>
+          <b-dropdown-item href="#" @click="changeLang('ZH')">ZH</b-dropdown-item>
+          <b-dropdown-item href="#" @click="changeLang('KR')">KR</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item-dropdown right>
+        <b-nav-item right v-if="!scatter">
+          Download Scatter
+        </b-nav-item>
+
+        <b-nav-item right v-if="scatter && !identity" @click="linkIdentity">
+          Link Scatter
+        </b-nav-item>
+
+        <b-nav-item-dropdown right v-if="scatter && identity">
           <!-- Using button-content slot -->
           <template slot="button-content">
-            <em> Link Scatter </em>
+            <em> {{ scatterAccount.name }} </em>
           </template>
           <b-dropdown-item to="profile">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Signout</b-dropdown-item>
+          <b-dropdown-item href="#" @click="changeIdentity">Change Identity </b-dropdown-item>
+          <b-dropdown-item href="#" @click="removeIdentity">Signout</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
@@ -46,6 +58,8 @@
 </template>
 
 <script>
+import {mapState, mapGetters} from 'vuex'
+
 export default {
   name: 'Header',
   components: {
@@ -53,12 +67,39 @@ export default {
   },
   data () {
     return {
-
+      currentLang: 'EN'
     }
+  },
+  computed: {
+    ...mapState({
+      scatter: state => state.api.scatter,
+      defaultNetwork: state => state.api.defaultNetwork
+    }),
+    ...mapGetters({
+      identity: 'api/GET_SCATTER_IDENTITY',
+      scatterAccount: 'api/GET_SCATTER_ACCOUNT'
+    })
   },
   methods: {
     push (route) {
       this.$router.push(route)
+    },
+    changeLang (newLang) {
+      this.currentLang = newLang
+    },
+    linkIdentity () {
+      this.scatter.getIdentity({accounts: [ this.defaultNetwork ]}).then(identity => {
+        console.log(identity)
+        // this.updateAccount(this.scatterAccount.name)
+      })
+    },
+    changeIdentity () {
+      this.scatter.forgetIdentity().then(() => {
+        this.linkIdentity()
+      })
+    },
+    removeIdentity () {
+      this.scatter.forgetIdentity()
     }
   }
 }
