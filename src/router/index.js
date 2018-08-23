@@ -13,6 +13,7 @@ import projects from '@/pages/Projects'
 import search from '@/pages/Search'
 import projectReview from '@/pages/ProjectReview'
 import signupProposer from '@/pages/SignupProposer'
+import scatter from '@/pages/Scatter'
 
 Vue.use(Router)
 
@@ -63,6 +64,11 @@ export default new Router({
       path: '/signup-proposer',
       name: 'SignupProposer',
       component: signupProposer
+    },
+    {
+      path: '/scatter',
+      name: 'Scatter',
+      component: scatter
     },
     {
       path: '/project-review',

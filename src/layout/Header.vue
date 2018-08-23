@@ -15,6 +15,8 @@
         <b-nav-item to="projects">Projects</b-nav-item>
         <b-nav-item to="create">Create</b-nav-item>
         <b-nav-item to="signup-proposer">Proposer Signup</b-nav-item>
+        <!--<b-nav-item v-if="canShowScatterButton()" @click="loginScatter">{{ $t('lang.scatter') }}</button>
+        <b-nav-item v-if="!canShowScatterButton()" @click="logoutScatter">Logout</button>-->
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -61,6 +63,41 @@ export default {
       this.$router.push(route)
     }
   }
+  /*scatter: 'any'
+  identity: 'any'
+  network: 'any'
+  account: 'any'
+  login: () => void,
+  logout: () => void,
+
+  canShowScatterButton() {
+    if (!this.scatter) return true;
+    if (!this.identity) return true;
+    if (!this.account) return true;
+    return false;
+  }
+
+  async loginScatter() {
+    // User does not have Scatter.
+    if (!this.scatter) return this.$router.push("/help#setting-up-scatter");
+
+    await this.login();
+    if (!this.account || !await getAccount(this.account.name)) {
+      (this as any).$toasted.error(
+        "There was an issue finding this account on the network. Perhaps it doesn't exist on this chain.",
+        {
+          theme: "primary",
+          position: "top-center",
+          duration: 5000
+        }
+      );
+      this.$router.push("/");
+    }
+  }
+
+  async logoutScatter(){
+    this.logout();
+  }*/
 }
 </script>
 
