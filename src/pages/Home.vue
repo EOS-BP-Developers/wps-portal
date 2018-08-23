@@ -46,7 +46,9 @@
                   <b-card-group deck class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="proposal.category === 'Emergency'" v-for="(proposal, index) in sortByVotes" :key="index">
+                      <!-- Take note currently no cards will be shown as the only response from api has category value of 'emergency' -->
+                      <!-- Change the v-if category value to 'emergency' to test if necessary -->
+                      <div class="col-md-4" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
                         <project-card :project_img_url="proposal.project_img_url"
