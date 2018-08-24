@@ -1,6 +1,6 @@
 <template>
   <!--Nav Bar-->
-  <b-navbar toggleable="md" type="light" fixed="top">
+  <b-navbar toggleable="md" type="light" fixed="top" class="font-weight-normal">
 
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
     <b-navbar-brand to="/">
@@ -22,8 +22,6 @@
         <b-nav-item to="signup-proposer">Proposer Signup</b-nav-item>
 
       <!-- Right aligned nav items -->
-
-
         <b-nav-item-dropdown :text="currentLang" right>
           <b-dropdown-item @click="changeLang('EN')">English</b-dropdown-item>
           <b-dropdown-item @click="changeLang('ES')">Español</b-dropdown-item>
