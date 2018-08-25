@@ -42,36 +42,23 @@
                     nav-class="justify-content-center"
                     content-class="nav-item">
               <!-- Hot Tab - Most voted projects on top -->
-              <b-tab title="Hot"
-                     active>
-
+              <b-tab title="Hot" active>
                   <b-card-group deck class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Popular'" v-for="(item, index) in computedNumbers" :key="index">
+                      <!-- Take note currently no cards will be shown as the only response from api has category value of 'emergency' -->
+                      <!-- Change the v-if category value to 'emergency' to test if necessary -->
+                      <div class="col-md-4" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
-                        <b-card   no-body
-                                  v-bind:img-src="item.image"
-                                  img-alt="Image"
-                                  img-top
-                                  tag="div"
-                                  style="max-width: 20rem;"
-                                  class="mb-2"
-                                  >
-                          <h4 slot="header">{{ item.name }}</h4>
-                          <b-card-body>
-                            <p class="d-inline text-success">{{ item.status }}</p>
-                            <span class="badge badge-secondary">{{ item.category }}</span>
-                            <p class="d-inline text-info">{{ item.votes }} votes</p>
-                            <p class="card-text mt-3">
-                              {{ item.description }}
-                            </p>
-                          </b-card-body>
-                          <b-card-footer>
-                            <button type="button" class="btn btn-secondary">View</button>
-                          </b-card-footer>
-                        </b-card>
+                        <project-card :project_img_url="proposal.project_img_url"
+                                      :title="proposal.title"
+                                      :status="proposal.status"
+                                      :category="proposal.category"
+                                      :total_votes="proposal.total_votes"
+                                      :summary="proposal.summary"
+                                      :fund_start_time="proposal.fund_start_time">
+                        </project-card>
 
                       </div>
                     </div>
@@ -81,6 +68,26 @@
               </b-tab>
 
               <b-tab title="Latest">
+
+                <b-card-group deck class="mb-3">
+
+                  <div class="row">
+                    <div class="col-md-4" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByLatest" :key="index">
+
+                      <!-- Project Card -->
+                      <project-card :project_img_url="proposal.project_img_url"
+                                    :title="proposal.title"
+                                    :status="proposal.status"
+                                    :category="proposal.category"
+                                    :total_votes="proposal.total_votes"
+                                    :summary="proposal.summary"
+                                    :fund_start_time="proposal.fund_start_time">
+                      </project-card>
+
+                    </div>
+                  </div>
+
+                </b-card-group>
 
               </b-tab>
 
@@ -97,34 +104,21 @@
               <!-- Hot Tab - Most voted projects on top -->
               <b-tab title="Hot" active>
 
-                                  <b-card-group deck
+                              <b-card-group deck
                                 class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="(item, index) in computedNumbers" :key="index">
+                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="(item, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
-                        <b-card   no-body
-                                  v-bind:img-src="item.image"
-                                  img-alt="Image"
-                                  img-top
-                                  tag="div"
-                                  style="max-width: 20rem;"
-                                  class="mb-2"
-                                  >
-                          <h4 slot="header">{{ item.name }}</h4>
-                          <b-card-body>
-                            <p class="d-inline text-success">{{ item.status }}</p>
-                            <span class="badge badge-secondary">{{ item.category }}</span>
-                            <p class="d-inline text-info">{{ item.votes }} votes</p>
-                            <p class="card-text mt-3">
-                              {{ item.description }}
-                            </p>
-                          </b-card-body>
-                          <b-card-footer>
-                            <button type="button" class="btn btn-secondary">View</button>
-                          </b-card-footer>
-                        </b-card>
+                        <project-card :project_img_url="proposal.project_img_url"
+                                      :title="proposal.title"
+                                      :status="proposal.status"
+                                      :category="proposal.category"
+                                      :total_votes="proposal.total_votes"
+                                      :summary="proposal.summary"
+                                      :fund_start_time="proposal.fund_start_time">
+                        </project-card>
 
                       </div>
                     </div>
@@ -135,13 +129,26 @@
               </b-tab>
               <b-tab title="Latest">
 
-                <div class="container">
+                <b-card-group deck
+                              class="mb-3">
+
                   <div class="row">
+                    <div class="col-md-4" v-if="item.category === 'Community'" v-for="item in sortByLatest">
 
-                    <!-- Need same cards ordered by date -->
+                      <!-- Project Card -->
+                      <project-card :project_img_url="proposal.project_img_url"
+                                    :title="proposal.title"
+                                    :status="proposal.status"
+                                    :category="proposal.category"
+                                    :total_votes="proposal.total_votes"
+                                    :summary="proposal.summary"
+                                    :fund_start_time="proposal.fund_start_time">
+                      </project-card>
 
+                    </div>
                   </div>
-                </div>
+
+                </b-card-group>
 
               </b-tab>
             </b-tabs>
@@ -191,11 +198,14 @@
 
 <script>
 import CategoryTabContent from '../components/CategoryTabContent.vue'
+import ProjectCard from '../components/ProjectCard.vue'
+import { parseDate } from '../utils/parseDate'
 
 export default {
   name: 'Home',
   components: {
-    CategoryTabContent
+    CategoryTabContent,
+    ProjectCard
   },
   data () {
     return {
@@ -208,26 +218,28 @@ export default {
         'ONGOING PROJECTS': '235,289'
       },
       projects: [
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Warhammer', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '345', category: 'Popular' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '256', category: 'Community' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '846', category: 'Popular' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '176', category: 'Community' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '112', category: 'Community' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '543', category: 'Popular' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '165', category: 'Community' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '143', category: 'Community' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular' },
-        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '943', category: 'Community' }
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Warhammer', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '432', category: 'Popular', timestamp: '2018-02-08 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '345', category: 'Popular', timestamp: '2018-02-18 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '256', category: 'Community', timestamp: '2018-04-08 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '846', category: 'Popular', timestamp: '2018-05-28 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '176', category: 'Community', timestamp: '2018-01-04 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Red Alert', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular', timestamp: '2018-07-31 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '112', category: 'Community', timestamp: '2018-12-08 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Diablo', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '543', category: 'Popular', timestamp: '2018-03-09 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Sim City', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '165', category: 'Community', timestamp: '2018-02-08 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '143', category: 'Community', timestamp: '2018-10-02 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'Pod', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '431', category: 'Popular', timestamp: '2018-07-07 09+07:00' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Ongoing', name: 'GTA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', votes: '943', category: 'Community', timestamp: '2018-08-12 09+07:00' }
       ],
-      proposals: null
+      proposals: []
     }
   },
   computed: {
-    computedNumbers () {
-      let projects = this.projects
-      return projects.sort((a, b) => Number(b.votes) - Number(a.votes))
+    sortByVotes () {
+      return Array.prototype.slice.call(this.proposals).sort((a, b) => Number(b.votes) - Number(a.votes))
+    },
+    sortByLatest () {
+      return Array.prototype.slice.call(this.proposals).sort((a, b) => parseDate(b.timestamp) - parseDate(a.timestamp))
     }
   },
   methods: {
@@ -254,5 +266,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.card-deck > .row {
+  width: 100%; /* For strange behavior when only 1 card exist, .row does not span full width */
+}
 </style>
