@@ -86,7 +86,6 @@
 
             </b-tabs>
 
-
         <!-- End of Popular Tab -->
         </b-tab>
         <!-- Community Tab -->

@@ -1,18 +1,17 @@
 import ScatterJS from 'scatter-js/dist/scatter.esm'
 import EOS from 'eosjs'
 import API from '../../../api'
-import { jungle } from './endpoints'
+import { local } from './endpoints'
 
 // Start API as jungle with jungle account
-const api = new API(EOS(jungle), 'wpswpswpswps')
+const api = new API(EOS(local), 'eosio.wps')
 
 export default {
   namespaced: true,
 
   state: {
     scatter: null,
-    eos: null,
-    defaultNetwork: jungle
+    defaultNetwork: local
   },
 
   actions: {
@@ -23,20 +22,12 @@ export default {
           window.scatter = null
         }
       })
-    },
-
-    async INITIALIZE_EOS ({ commit, state }) {
-      commit('INITIALIZE_EOS', EOS(state.defaultNetwork))
     }
   },
 
   mutations: {
     CONNECT_SCATTER (state, scatter) {
       state.scatter = scatter
-    },
-
-    INITIALIZE_EOS (state, eos) {
-      state.eos = eos
     }
   },
 
@@ -53,8 +44,6 @@ export default {
         : null
     },
 
-    GET_API: () => {
-      return api
-    }
+    GET_API: () => api
   }
 }
