@@ -10,11 +10,10 @@
     </b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse" >
-      <b-nav-form class="has-feedback has-feedback-left">
-        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-        <i class="glyphicon glyphicon-user form-control-feedback"></i>
-        <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search Projects"/>
-
+      <b-nav-form >
+        <div class="has-feedback has-feedback-left">
+        <b-form-input size="sm" class="mr-sm-2 glyphicon glyphicon-search" type="text" placeholder="Search Projects"/>
+        </div>
       </b-nav-form>
       <b-navbar-nav class="ml-auto">
         <b-nav-item to="categories">Categories</b-nav-item>
@@ -44,9 +43,10 @@
           <b-dropdown-item @click="changeLang('EN')">English</b-dropdown-item>
           <b-dropdown-item @click="changeLang('ES')">Español</b-dropdown-item>
           <b-dropdown-item @click="changeLang('KR')">한국어</b-dropdown-item>
-          <b-dropdown-item @click="changeLang('CN')">中文</b-dropdown-item>
+          <b-dropdown-item @click="changeLang('ZH')">中文</b-dropdown-item>
           <b-dropdown-item @click="changeLang('DE')">Deutsch</b-dropdown-item>
           <b-dropdown-item @click="changeLang('FR')">Français</b-dropdown-item>
+          <b-dropdown-item @click="changeLang('IT')">Italiano</b-dropdown-item>
           <b-dropdown-item @click="changeLang('JP')">日本語</b-dropdown-item>
           <b-dropdown-item @click="changeLang('RU')">Русский</b-dropdown-item>
           <b-dropdown-item @click="changeLang('NO')">Norsk</b-dropdown-item>
@@ -62,6 +62,8 @@
 
 <script>
 import {mapState, mapGetters} from 'vuex'
+import i18n from '../i18n/index.js'
+
 
 export default {
   name: 'Header',
@@ -89,6 +91,7 @@ export default {
     },
     changeLang (newLang) {
       this.currentLang = newLang
+
     },
     linkIdentity () {
       this.scatter.getIdentity({accounts: [ this.defaultNetwork ]}).then(identity => {
@@ -109,5 +112,4 @@ export default {
 </script>
 
 <style>
-
 </style>
