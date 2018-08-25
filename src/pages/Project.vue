@@ -14,8 +14,8 @@
             <div class="container">
               <div class="row text-left">
                 <div class="col-md-12">
-                  <p class="h6 py-3"><span class="border border-primary rounded py-1 px-4">{{ category }}</span></p>
-                  <h1 class="card-title py-0 my-0">{{ title }}</h1>
+                  <p class="h6 py-3"><span class="border border-primary rounded py-1 px-4">{{ proposals.category }}</span></p>
+                  <h1 class="card-title py-0 my-0">{{ proposals.title }}</h1>
                   <h4 class="card-text text-muted">{{ subTitle }}</h4>
                   <h6 class="text-primary pt-3">Project Owner</h6>
 
@@ -120,7 +120,7 @@
       </div>
     </div>
     <!-- # End of Team Members : Photo, Name, Role, Company -->
-
+    <pre><code>Proposals: {{proposals}} </code></pre>
   </main>
 </template>
 
@@ -155,8 +155,28 @@ export default {
         {id: 1, image: 'https://placeholdit.imgix.net/~text?txtsize=38&w=100&h=100', name: 'Ron Howard', role: 'Product Designer', company: 'Wayland Yutani'},
         {id: 2, image: 'https://placeholdit.imgix.net/~text?txtsize=38&w=100&h=100', name: 'Sharon Valerii', role: 'UX Designer', company: 'Wayland Yutani'},
         {id: 3, image: 'https://placeholdit.imgix.net/~text?txtsize=38&w=100&h=100', name: 'Gaius Balter', role: 'Senior Engineer', company: 'Wayland Yutani'}
-      ]
+      ],
+      proposals: []
     }
+  },
+  methods: {
+    async getProposals () {
+      this.proposals = await this.$store.getters['api/GET_API'].getProposals()
+
+      /*
+      this.$store.getters['api/GET_API'].getProposals()
+      this.$store.getters['api/GET_API'].getRejectedProposals()
+      this.$store.getters['api/GET_API'].getFinishedProposals()
+      this.$store.getters['api/GET_API'].getProposers()
+      this.$store.getters['api/GET_API'].getReviewers()
+      this.$store.getters['api/GET_API'].getCommittees()
+      this.$store.getters['api/GET_API'].getVotings()
+      this.$store.getters['api/GET_API'].getWpsGlobal()
+      */
+    }
+  },
+  created () {
+    this.getProposals()
   }
 }
 </script>
