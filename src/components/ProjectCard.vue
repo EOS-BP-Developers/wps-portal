@@ -47,7 +47,7 @@ export default {
       // Voting period is 180 days
       const diff = getDaysFromToday(dateString, this.votingDuration)
       if (diff < 0) {
-        return 'Expired';
+        return 'Expired'
       } else if (diff === 1) {
         return `${diff} day left`
       } else {

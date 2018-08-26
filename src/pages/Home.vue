@@ -51,8 +51,7 @@
                       <div class="col-md-6" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
-                        <project-card :data="proposal">
-                        </project-card>
+                        <project-card :data="proposal"></project-card>
 
                       </div>
                     </div>
@@ -69,8 +68,7 @@
                     <div class="col-md-6" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByLatest" :key="index">
 
                       <!-- Project Card -->
-                      <project-card :data="proposal">
-                      </project-card>
+                      <project-card :data="proposal"></project-card>
 
                     </div>
                   </div>
@@ -99,8 +97,7 @@
                       <div class="col-md-6" v-if="item.category === 'Community'" v-for="(item, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
-                        <project-card :data="proposal">
-                        </project-card>
+                        <project-card :data="proposal"></project-card>
 
                       </div>
                     </div>
@@ -118,8 +115,7 @@
                     <div class="col-md-6" v-if="item.category === 'Community'" v-for="item in sortByLatest">
 
                       <!-- Project Card -->
-                      <project-card :data="proposal">
-                      </project-card>
+                      <project-card :data="proposal"></project-card>
 
                     </div>
                   </div>
