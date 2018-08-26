@@ -53,7 +53,7 @@ export default {
       this.committees = await this.$store.getters['api/GET_API'].getCommittees()
       this.votings = await this.$store.getters['api/GET_API'].getVotings()
       this.wpsGlobal = await this.$store.getters['api/GET_API'].getWpsGlobal()
-      this.singleProposal = await this.$store.getters['api/GET_API'].getProposal(1)
+      this.singleProposal = await this.$store.getters['api/GET_API'].getProposal(2)
     }
   },
   created () {

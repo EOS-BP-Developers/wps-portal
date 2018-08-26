@@ -21,8 +21,9 @@ class API {
       code: this.account,
       scope: this.account,
       table: 'proposals',
-      table_key: id,
+      table_key: '',
       key_type: 'i64',
+      lower_bound: id,
       index_position: 1,
       limit: 1
     }).then(({rows}) => {
