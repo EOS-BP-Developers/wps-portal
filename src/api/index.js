@@ -15,6 +15,23 @@ class API {
     }).then(result => result.rows)
   }
 
+  getProposal (id) {
+    return this.eos.getTableRows({
+      json: true,
+      code: this.account,
+      scope: this.account,
+      table: 'proposals',
+      table_key: id,
+      key_type: 'i64',
+      index_position: 1,
+      limit: 1
+    }).then(({rows}) => {
+      return rows.length > 0
+        ? rows[0]
+        : null
+    })
+  }
+
   getRejectedProposals () {
     return this.eos.getTableRows({
       json: true,
