@@ -3,34 +3,33 @@
   <b-navbar toggleable="md" type="light" fixed="top">
 
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-    <b-navbar-brand to="/">
-      <object width="100px" height="35px" data="/static/img/main_logo.svg" type="image/svg+xml">
+    <!--Brand Logo-->
+    <b-navbar-brand to="/#">
+      <object width="100px" height="35px" data="/static/img/main_logo.svg" type="image/svg+xml" id="nav-logo">
         <img src="/static/img/main_logo.png" />
       </object>
     </b-navbar-brand>
 
-    <b-collapse is-nav id="nav_collapse" >
-      <b-nav-form class="has-feedback has-feedback-left">
-        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-        <i class="glyphicon glyphicon-user form-control-feedback"></i>
-        <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search Projects"/>
+    <b-collapse is-nav id="nav_collapse">
+      <!-- Left elements -->
+      <b-navbar-nav>
+        <b-nav-item to="categories" class="mx-1">Categories</b-nav-item>
+        <b-nav-item to="projects" class="mx-1">Projects</b-nav-item>
+        <b-nav-item to="create" class="mx-1">Create</b-nav-item>
+        <b-nav-item to="signup-proposer" class="mx-1">Proposer Signup</b-nav-item>
+      </b-navbar-nav>
 
-      </b-nav-form>
+      <!-- Right elements -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item to="categories">Categories</b-nav-item>
-        <b-nav-item to="projects">Projects</b-nav-item>
-        <b-nav-item to="create">Create</b-nav-item>
-        <b-nav-item to="signup-proposer">Proposer Signup</b-nav-item>
 
-        <b-nav-item right v-if="!scatter">
+        <b-nav-item right v-if="!scatter" class="mx-2">
           Download Scatter
         </b-nav-item>
-
-        <b-nav-item right v-if="scatter && !identity" @click="linkIdentity">
+        <b-nav-item right v-if="scatter && !identity" @click="linkIdentity" class="mx-2">
           Link Scatter
         </b-nav-item>
 
-        <b-nav-item-dropdown right v-if="scatter && identity">
+        <b-nav-item-dropdown right v-if="scatter && identity" id="last-item" class="mx-2">
           <!-- Using button-content slot -->
           <template slot="button-content">
             <em> {{ scatterAccount.name }} </em>
@@ -40,7 +39,7 @@
           <b-dropdown-item href="#" @click="removeIdentity">Signout</b-dropdown-item>
         </b-nav-item-dropdown>
       <!-- Right aligned nav items -->
-        <b-nav-item-dropdown :text="currentLang" right>
+        <b-nav-item-dropdown :text="currentLang" right class="mx-2">
           <b-dropdown-item @click="changeLang('EN')">English</b-dropdown-item>
           <b-dropdown-item @click="changeLang('ES')">Español</b-dropdown-item>
           <b-dropdown-item @click="changeLang('KR')">한국어</b-dropdown-item>
@@ -54,6 +53,10 @@
           <b-dropdown-item @click="changeLang('AR')">العَرَبِيَّة‎</b-dropdown-item>
         </b-nav-item-dropdown>
 
+        <b-nav-form>
+          <b-form-input class="mr-sm-2" type="text" placeholder="Search by project name"></b-form-input>
+          <b-button variant="outline-success" class="my-2 my-sm-0" type="submit">Search</b-button>
+        </b-nav-form>
       </b-navbar-nav>
     </b-collapse>
 
@@ -109,5 +112,15 @@ export default {
 </script>
 
 <style>
+/* Fix for not clickable brand item */
+#nav-logo {
+  position: relative;
+  z-index: -1;
+}
+
+/* logo display bug, better solution tbf */
+.navbar-brand {
+  height: 44px;
+}
 
 </style>
