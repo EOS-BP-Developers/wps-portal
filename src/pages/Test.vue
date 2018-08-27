@@ -10,6 +10,8 @@
       <pre><code>Votings: {{votings}} </code></pre><br><br>
       <pre><code>WPS Global: {{wpsGlobal}} </code></pre><br><br>
 
+      <pre><code>Single Proposal: {{singleProposal}} </code></pre><br><br>
+
   </main>
 
 </template>
@@ -31,7 +33,8 @@ export default {
       reviewers: null,
       committees: null,
       votings: null,
-      wpsGlobal: null
+      wpsGlobal: null,
+      singleProposal: null
     }
   },
   computed: {
@@ -41,7 +44,7 @@ export default {
     }
   },
   methods: {
-    async getProposals () {
+    async fetchData () {
       this.proposals = await this.$store.getters['api/GET_API'].getProposals()
       this.rejectedProposals = await this.$store.getters['api/GET_API'].getRejectedProposals()
       this.finishedProposals = await this.$store.getters['api/GET_API'].getFinishedProposals()
@@ -50,10 +53,11 @@ export default {
       this.committees = await this.$store.getters['api/GET_API'].getCommittees()
       this.votings = await this.$store.getters['api/GET_API'].getVotings()
       this.wpsGlobal = await this.$store.getters['api/GET_API'].getWpsGlobal()
+      this.singleProposal = await this.$store.getters['api/GET_API'].getProposal(2)
     }
   },
   created () {
-    this.getProposals()
+    this.fetchData()
   }
 }
 </script>

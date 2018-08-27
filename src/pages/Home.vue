@@ -48,17 +48,11 @@
                     <div class="row">
                       <!-- Take note currently no cards will be shown as the only response from api has category value of 'emergency' -->
                       <!-- Change the v-if category value to 'emergency' to test if necessary -->
+                      
                       <div class="col-md-4" v-if="proposal.category === 'emergency'" v-for="(proposal, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
-                        <project-card :project_img_url="proposal.project_img_url"
-                                      :title="proposal.title"
-                                      :status="proposal.status"
-                                      :category="proposal.category"
-                                      :total_votes="proposal.total_votes"
-                                      :summary="proposal.summary"
-                                      :fund_start_time="proposal.fund_start_time">
-                        </project-card>
+                        <project-card :data="proposal"></project-card>
 
                       </div>
                     </div>
@@ -72,17 +66,10 @@
                 <b-card-group deck class="mb-3">
 
                   <div class="row">
-                    <div class="col-md-4" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByLatest" :key="index">
+                    <div class="col-md-6" v-if="proposal.category === 'Popular'" v-for="(proposal, index) in sortByLatest" :key="index">
 
                       <!-- Project Card -->
-                      <project-card :project_img_url="proposal.project_img_url"
-                                    :title="proposal.title"
-                                    :status="proposal.status"
-                                    :category="proposal.category"
-                                    :total_votes="proposal.total_votes"
-                                    :summary="proposal.summary"
-                                    :fund_start_time="proposal.fund_start_time">
-                      </project-card>
+                      <project-card :data="proposal"></project-card>
 
                     </div>
                   </div>
@@ -108,17 +95,10 @@
                                 class="mb-3">
 
                     <div class="row">
-                      <div class="col-md-4" v-if="item.category === 'Community'" v-for="(item, index) in sortByVotes" :key="index">
+                      <div class="col-md-6" v-if="item.category === 'Community'" v-for="(item, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
-                        <project-card :project_img_url="proposal.project_img_url"
-                                      :title="proposal.title"
-                                      :status="proposal.status"
-                                      :category="proposal.category"
-                                      :total_votes="proposal.total_votes"
-                                      :summary="proposal.summary"
-                                      :fund_start_time="proposal.fund_start_time">
-                        </project-card>
+                        <project-card :data="proposal"></project-card>
 
                       </div>
                     </div>
@@ -133,17 +113,10 @@
                               class="mb-3">
 
                   <div class="row">
-                    <div class="col-md-4" v-if="item.category === 'Community'" v-for="item in sortByLatest">
+                    <div class="col-md-6" v-if="item.category === 'Community'" v-for="item in sortByLatest">
 
                       <!-- Project Card -->
-                      <project-card :project_img_url="proposal.project_img_url"
-                                    :title="proposal.title"
-                                    :status="proposal.status"
-                                    :category="proposal.category"
-                                    :total_votes="proposal.total_votes"
-                                    :summary="proposal.summary"
-                                    :fund_start_time="proposal.fund_start_time">
-                      </project-card>
+                      <project-card :data="proposal"></project-card>
 
                     </div>
                   </div>
@@ -245,6 +218,9 @@ export default {
   methods: {
     async getProposals () {
       this.proposals = await this.$store.getters['api/GET_API'].getProposals()
+      // Uncomment below to test project card timestamp
+      // this.proposals[0].vote_start_time = '2018-07-29'
+      // this.proposals[0].project_img_url = 'https://c1.staticflickr.com/3/2637/4151968102_5cee017101_b.jpg'
 
       /*
       this.$store.getters['api/GET_API'].getProposals()
