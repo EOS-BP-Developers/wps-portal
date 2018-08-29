@@ -17,8 +17,20 @@
       </div>
     </b-card-body>
     <b-card-footer>
-      <div class="d-inline proposal-vote-count"><span>{{ data.total_votes }}</span> votes</div>
-      <span class="proposal-category">{{ data.category }}</span>
+      <div class="wrapper">
+        <div class="d-inline proposal-vote-count"><span>{{ data.total_votes }}</span> total votes</div>
+        <span class="proposal-category">{{ data.category }}</span>
+      </div>
+      <div class="voting-summary">
+        <div class="for" v-b-tooltip.hover :title="`${data.agree_votes} Votes For`">
+          <i class="mdi mdi-thumb-up"></i>
+          <span>{{ data.total_votes === 0 ? `-` : `${data.agree_votes * 100 / data.total_votes}%` }}</span>
+        </div>
+        <div class="against" v-b-tooltip.hover :title="`${data.disagree_votes} Votes Against`">
+          <i class="mdi mdi-thumb-down"></i>
+          <span>{{ data.total_votes === 0 ? `-` : `${data.disagree_votes * 100 / data.total_votes}%` }}</span>
+        </div>
+      </div>
     </b-card-footer>
   </b-card>
 </template>
@@ -63,8 +75,8 @@ export default {
   display: grid !important;
   grid-template-columns: 40% 60%;
   -ms-grid-columns: 40% 60%;
-  grid-template-rows: 60px 150px 60px;
-  -ms-grid-rows: 60px 150px 60px;
+  grid-template-rows: 60px 150px 120px;
+  -ms-grid-rows: 60px 150px 120px;
 
   color: initial;
 }
@@ -142,27 +154,73 @@ export default {
   -ms-grid-column: 2;
 
   border-radius: 0 0 calc(0.25rem - 1px) 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background-color: #ffffff;
   border-top: 0;
 }
 
-.card .card-footer .proposal-vote-count {
+.card .card-footer .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card .card-footer .wrapper .proposal-vote-count {
   color: #a5a5a5;
   font-weight: 700;
 }
 
-.card .card-footer .proposal-vote-count span {
+.card .card-footer .wrapper .proposal-vote-count span {
   color: #c2b0fc;
   font-weight: 500;
 }
 
-.card .card-footer .proposal-category {
+.card .card-footer .wrapper .proposal-category {
   border: 1px solid #dedede;
   border-radius: 2px;
   color: #8995d2;
   padding: 4px 12px;
+}
+
+.card .card-footer .voting-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.card .card-footer .voting-summary .for,
+.card .card-footer .voting-summary .against {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  transition: background-color linear 0.2s, color linear 0.2s;
+  width: 80px;
+}
+
+.card .card-footer .voting-summary .for span,
+.card .card-footer .voting-summary .against span {
+  text-align: right;
+}
+
+.card .card-footer .voting-summary .for {
+  border: 1px solid rgba(123, 197, 118, 0.4);
+  color: #7a8b78;
+}
+
+.card .card-footer .voting-summary .for:hover {
+  background-color: rgba(123, 197, 118, 0.8);
+  color: #ffffff;
+}
+
+.card .card-footer .voting-summary .against {
+  border: 1px solid rgba(239, 80, 98, 0.4);
+  color: #967074;
+}
+
+.card .card-footer .voting-summary .against:hover {
+  background-color: rgba(239, 80, 98, 0.8);
+  color: #ffffff;
 }
 </style>

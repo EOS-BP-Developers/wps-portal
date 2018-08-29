@@ -145,6 +145,7 @@
 <script>
 export default {
   name: 'Project',
+  props: [ 'projectId' ],
   data () {
     return {
       title: 'EOS Rogue',
@@ -180,7 +181,7 @@ export default {
   },
   methods: {
     async getProposal () {
-      this.singleProposal = await this.$store.getters['api/GET_API'].getProposal(2)
+      this.singleProposal = await this.$store.getters['api/GET_API'].getProposal(this.projectId)
     }
   },
   created () {

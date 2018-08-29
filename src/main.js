@@ -12,6 +12,7 @@ import BootstrapVue from 'bootstrap-vue'
 
 // Custom CSS
 import './main.css'
+import 'mdi/css/materialdesignicons.min.css'
 
 // Bootstrap
 Vue.use(BootstrapVue)

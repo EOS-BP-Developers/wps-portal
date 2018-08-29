@@ -1,5 +1,5 @@
 export const CONSTANTS = {
-  votingDuration: 180
+  votingDuration: 30
 }
 
 export const API_MAP = {
