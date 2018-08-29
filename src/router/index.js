@@ -46,9 +46,10 @@ export default new Router({
       component: profile
     },
     {
-      path: '/project',
+      path: '/project/:projectId',
       name: 'Project',
-      component: project
+      component: project,
+      props: true
     },
     {
       path: '/projects',
