@@ -75,7 +75,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <!-- Do we have  -->
-                      <p class="h6 font-weight-normal my-0 float-right">Created: {{ createDate }}</p>
+                      <p class="h6 font-weight-normal my-0 float-right">Created: {{ singleProposal.vote_start_time }}</p>
                     </div>
                     <div class="col-md-6">
                       <p class="h6 font-weight-normal my-0 float-right">Expires: {{ expireDate }}</p>
