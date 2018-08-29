@@ -48,8 +48,8 @@
                     <div class="row">
                       <!-- Take note currently no cards will be shown as the only response from api has category value of 'emergency' -->
                       <!-- Change the v-if category value to 'emergency' to test if necessary -->
-                      
-                      <div class="col-md-4" v-if="proposal.category === 'emergency'" v-for="(proposal, index) in sortByVotes" :key="index">
+
+                      <div class="col-md-6" v-if="proposal.category === 'emergency'" v-for="(proposal, index) in sortByVotes" :key="index">
 
                         <!-- Project Card -->
                         <project-card :data="proposal"></project-card>
