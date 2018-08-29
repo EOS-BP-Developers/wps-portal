@@ -24,7 +24,7 @@ class API {
       table_key: '',
       key_type: 'i64',
       lower_bound: id,
-      index_position: 1,
+      index_position: 2,
       limit: 1
     }).then(({rows}) => {
       return rows.length > 0
