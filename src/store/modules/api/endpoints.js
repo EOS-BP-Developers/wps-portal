@@ -16,9 +16,9 @@ const local = {
   chain: 'local',
   blockchain: 'eos',
   chainId: 'cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f',
-  port: 80,
+  port: 8888,
   protocol: 'http',
-  host: 'wps-test.hkeos.com:8888',
+  host: 'wps-test.hkeos.com',
   httpEndpoint: 'http://wps-test.hkeos.com:8888'
 }
 

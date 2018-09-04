@@ -199,7 +199,7 @@ export default {
       maxDays: 60,
       form: {
         committee: null,
-        subcategory: null,
+        subcategory: 0,
         title: null,
         summary: null,
         project_img_url: null,
@@ -214,7 +214,7 @@ export default {
       },
       committees: [
         { text: 'Select One', value: null },
-        'Community', 'Education', 'Games', 'Others'
+        'emergencycom'
       ],
       show: true,
       success: null,
@@ -224,8 +224,8 @@ export default {
 
   computed: {
     ...mapState({
-      scatter: state => state.scatter.scatter,
-      defaultNetwork: state => state.scatter.defaultNetwork
+      scatter: state => state.api.scatter,
+      network: state => state.api.defaultNetwork
     }),
 
     ...mapGetters({
@@ -255,6 +255,7 @@ export default {
 
       // Update members
       form.members = ([this.teamMemberInitial, ...form.members]).map(member => member.url)
+      form.funding_goal = `${Number(form.funding_goal).toFixed(4)} EOS`
 
       // Check that acc exists
       if (!this.scatterAccount) {
