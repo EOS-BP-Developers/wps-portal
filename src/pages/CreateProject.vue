@@ -8,7 +8,7 @@
           </h1>
       </div>
     <!-- End of jumbotron -->
-    </div>x
+    </div>
 
     <!-- Project Creation Form -->
     <div class="container">
@@ -249,7 +249,7 @@ export default {
     },
     onSubmit (evt) {
       evt.preventDefault()
-      
+
       // Clone object
       let form = Object.assign({}, this.form)
 
