@@ -1,6 +1,6 @@
 <template>
   <main role="main">
-        <!-- Page Title Jubotron -->
+        <!-- Page Title Jumbotron -->
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
           <h1 class="display-6">
