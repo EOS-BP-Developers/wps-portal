@@ -49,7 +49,7 @@
             </div>
 
             <!-- Load more Button -->
-            <div class="container" style="margin-top:1em; margin-bottom:1em;">
+            <div class="container my-1">
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-secondary">Show more</button>
@@ -91,7 +91,7 @@
             </div>
 
             <!-- Load more Button -->
-            <div class="container" style="margin-top:1em; margin-bottom:1em;">
+            <div class="container my-1">
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-secondary">Show more</button>
@@ -172,7 +172,7 @@
             </div>
 
             <!-- Load more Button -->
-            <div class="container my-1" style="margin-top:1em; margin-bottom:1em;">
+            <div class="container my-1">
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-secondary">Show more</button>
