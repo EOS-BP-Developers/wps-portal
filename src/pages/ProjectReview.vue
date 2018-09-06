@@ -23,7 +23,7 @@
               <div class="row">
 
                 <!-- Card column -->
-                <div class="col-md-6" v-if="item.status === 'Pending Review'" v-for="item in projects" style="margin-top:1em;" :key="item.name">
+                <div class="col-md-6 mt-1" v-if="item.status === 'Pending Review'" v-for="item in projects" :key="item.name">
                   <b-card no-body
                           v-bind:img-src="item.image"
                           img-alt="Image"
@@ -49,7 +49,7 @@
             </div>
 
             <!-- Load more Button -->
-            <div class="container" style="margin-top:1em; margin-bottom:1em;">
+            <div class="container my-1">
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-secondary">Show more</button>
@@ -65,7 +65,7 @@
               <div class="row">
 
                 <!-- Card column -->
-                <div class="col-md-6" v-if="item.status === 'In Review'" v-for="item in projects" style="margin-top:1em;">
+                <div class="col-md-6 mt-1" v-if="item.status === 'In Review'" v-for="item in projects" :key="item.name">
                   <b-card no-body
                           v-bind:img-src="item.image"
                           img-alt="Image"
@@ -91,7 +91,7 @@
             </div>
 
             <!-- Load more Button -->
-            <div class="container" style="margin-top:1em; margin-bottom:1em;">
+            <div class="container my-1">
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-secondary">Show more</button>
@@ -106,7 +106,7 @@
               <div class="row">
 
                 <!-- Card column -->
-                <div class="col-md-6" v-if="item.status === 'On Going'" v-for="item in projects" style="margin-top:1em;">
+                <div class="col-md-6 mt-1" v-if="item.status === 'On Going'" v-for="item in projects" :key="item.name">
                   <b-card no-body
                           v-bind:img-src="item.image"
                           img-alt="Image"
@@ -131,7 +131,7 @@
               </div>
             </div>
 
-            <div class="container" style="margin-top:1em; margin-bottom:1em;">
+            <div class="container my-1">
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-secondary">Show more</button>
@@ -146,7 +146,7 @@
               <div class="row">
 
                 <!-- Card column -->
-                <div class="col-md-6" v-if="item.status === 'Rejected'" v-for="item in projects" style="margin-top:1em;">
+                <div class="col-md-6 mt-1" v-if="item.status === 'Rejected'" v-for="item in projects" :key="item.name">
                   <b-card no-body
                           v-bind:img-src="item.image"
                           img-alt="Image"
@@ -172,7 +172,7 @@
             </div>
 
             <!-- Load more Button -->
-            <div class="container" style="margin-top:1em; margin-bottom:1em;">
+            <div class="container my-1">
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-secondary">Show more</button>
@@ -191,33 +191,33 @@
 </template>
 
 <script>
-  import CategoryTabContent from '../components/CategoryTabContent.vue'
+import CategoryTabContent from '../components/CategoryTabContent.vue'
 
-  export default {
-    name: 'ProjectReview',
-    components: {
-      CategoryTabContent
-    },
-    data () {
-      return {
-        page: 'Project Review',
-        projects: [
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '12', name: 'Warhammer', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'In Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'On Going', duration: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'On Going', duration: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'In Review', duration: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'In Review', duration: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Rejected', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Rejected', duration: '13', name: 'Project Name', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
-          { image: 'https://picsum.photos/600/300/?image=25', status: 'Rejected', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' }
-        ],
-      }
+export default {
+  name: 'ProjectReview',
+  components: {
+    CategoryTabContent
+  },
+  data () {
+    return {
+      page: 'Project Review',
+      projects: [
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '12', name: 'Warhammer', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'In Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'On Going', duration: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'On Going', duration: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'In Review', duration: '10', name: 'Red Alert', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Pending Review', duration: '4', name: 'Diablo', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'In Review', duration: '19', name: 'Sim City', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Rejected', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Rejected', duration: '13', name: 'Project Name', description: 'This is a project description example to illustrate', votes: '432', category: 'Popular' },
+        { image: 'https://picsum.photos/600/300/?image=25', status: 'Rejected', duration: '19', name: 'GTA', description: 'This is a project description example to illustrate', votes: '432', category: 'Community' }
+      ]
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

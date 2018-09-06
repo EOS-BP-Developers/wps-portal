@@ -113,7 +113,7 @@
                               class="mb-3">
 
                   <div class="row">
-                    <div class="col-md-6" v-if="item.category === 'Community'" v-for="item in sortByLatest">
+                    <div class="col-md-6" v-if="item.category === 'Community'" v-for="item in sortByLatest" :key="item.vote_start_time">
 
                       <!-- Project Card -->
                       <project-card :data="proposal"></project-card>

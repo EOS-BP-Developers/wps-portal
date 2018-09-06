@@ -1,6 +1,6 @@
 <template>
   <main role="main">
-        <!-- Page Title Jubotron -->
+        <!-- Page Title Jumbotron -->
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
           <h1 class="display-6">
@@ -8,7 +8,7 @@
           </h1>
       </div>
     <!-- End of jumbotron -->
-    </div>x
+    </div>
 
     <!-- Project Creation Form -->
     <div class="container">
@@ -249,7 +249,7 @@ export default {
     },
     onSubmit (evt) {
       evt.preventDefault()
-      
+
       // Clone object
       let form = Object.assign({}, this.form)
 
